@@ -95,7 +95,7 @@
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "nav {\n    display: flex;\n    padding: 20px;\n    justify-content: space-between;\n}\n\n.app {\n    display: flex;\n}\n", ""]);
+exports.push([module.i, "/*\nPalette\n#F7E1D7 CREAM\n#FF87AB PINK\n#565656 GREY\n#AEA4BF LAVENDAR\n#17BEBB TEAL\n\nFONTS\nfont-family: 'Abril Fatface', cursive;\nfont-family: 'Poppins', sans-serif;\n\n\n*/\n\n* {\n    margin: 0;\n    background-color: #F7E1D7;\n    color: #565656;\n    font-family: 'Poppins', sans-serif;\n    font-size: 16px;\n}\n\nnav {\n    display: flex;\n    background-size: cover;\n    justify-content: space-between;\n    background-color: #AEA4BF;\n    color: #565656;\n    border-bottom: 3px #17BEBB solid;\n}\n\nnav h1 {\n    margin-left: 10px;\n    background-color: #AEA4BF;\n    font-family: 'Abril Fatface', cursive;\n    font-size: 64px;\n    \n}\n\nbutton {\n    background-color:#17BEBB;\n    border-radius: 10px;\n    margin-left: 10px;\n}\n\nbutton:hover {\n    background-color:#FF87AB;\n}\n\n.app {\n    display: flex;\n}\n\n.current-user {\n    display: flex;\n    justify-content: space-around;\n    background-color: #AEA4BF;\n    align-items: center;\n    padding: 10px;\n}\n\n.content {\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    flex-direction: column;\n    padding-top: 40px;\n    width: 75%;\n}\n\n.content h3 {\n    font-size: 32px;\n    border-bottom: 3px #17BEBB solid;\n    margin-bottom: 20px;\n    padding-bottom: 0px;\n}\n\n.friend {\n    width: 100%;\n    display: flex;\n    justify-content: space-between;\n    align-content: flex-end;\n    border: 2px black solid;\n    border-radius: 3px;\n    padding-right: 30px;\n    padding-left: 30px;\n    margin-bottom: 20px;\n}\n\n\n.friend p {\n    font-size: 16px;\n}\n\n\n", ""]);
 
 
 
@@ -25520,18 +25520,23 @@ var App = function (_React$Component) {
                 _react2.default.createElement(
                     "nav",
                     { className: "top-nav" },
-                    "Hello " + this.state.username,
                     _react2.default.createElement(
-                        "button",
+                        "h1",
                         null,
-                        "Log Out"
+                        "Gifter"
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "current-user" },
+                        "Hello " + this.state.username + "!",
+                        _react2.default.createElement(
+                            "button",
+                            null,
+                            "Log Out"
+                        )
                     )
                 ),
-                _react2.default.createElement(
-                    "div",
-                    { className: "friend-list" },
-                    _react2.default.createElement(_Friends2.default, null)
-                )
+                _react2.default.createElement(_Friends2.default, null)
             );
         }
     }]);
@@ -25574,24 +25579,66 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Friend = function (_React$Component) {
     _inherits(Friend, _React$Component);
 
-    function Friend() {
+    function Friend(props) {
         _classCallCheck(this, Friend);
 
-        return _possibleConstructorReturn(this, (Friend.__proto__ || Object.getPrototypeOf(Friend)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Friend.__proto__ || Object.getPrototypeOf(Friend)).call(this, props));
+
+        _this.state = {
+            friend: ""
+
+        };
+        _this.handleClick = _this.handleClick.bind(_this);
+        _this.hideGifts = _this.hideGifts.bind(_this);
+        return _this;
     }
 
     _createClass(Friend, [{
+        key: "handleClick",
+        value: function handleClick(e) {
+            console.log(e.target.id);
+            this.setState({
+                friend: e.target.id
+            });
+        }
+    }, {
+        key: "hideGifts",
+        value: function hideGifts() {
+            this.setState({
+                friend: ""
+            });
+        }
+    }, {
         key: "render",
         value: function render() {
-            return _react2.default.createElement(
-                "div",
-                null,
-                _react2.default.createElement(
-                    "h4",
+            var friendState = this.state.friend;
+
+            if (friendState === "") {
+                return _react2.default.createElement(
+                    "div",
+                    { id: this.props.friend.id, className: "friend", onClick: this.handleClick },
+                    _react2.default.createElement(
+                        "h4",
+                        null,
+                        this.props.friend.name
+                    ),
+                    _react2.default.createElement(
+                        "p",
+                        null,
+                        this.props.friend.gifts
+                    )
+                );
+            } else {
+                return _react2.default.createElement(
+                    "div",
                     null,
-                    "This is a friend"
-                )
-            );
+                    _react2.default.createElement(
+                        "button",
+                        { onClick: this.hideGifts },
+                        "x"
+                    )
+                );
+            }
         }
     }]);
 
@@ -25642,7 +25689,9 @@ var Friends = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Friends.__proto__ || Object.getPrototypeOf(Friends)).call(this, props));
 
-        _this.state = {};
+        _this.state = {
+            friends: [{ id: 1, name: "Ray", gifts: 3 }, { id: 2, name: "Chris", gifts: 5 }, { id: 3, name: "Sen", gifts: 7 }]
+        };
         return _this;
     }
 
@@ -25651,13 +25700,19 @@ var Friends = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 "div",
-                { className: "friend" },
+                { className: "content" },
                 _react2.default.createElement(
                     "h3",
                     null,
                     "Friends"
                 ),
-                _react2.default.createElement(_Friend2.default, null)
+                _react2.default.createElement(
+                    "div",
+                    { className: "friends-list" },
+                    this.state.friends.map(function (el) {
+                        return _react2.default.createElement(_Friend2.default, { key: el.id, friend: el });
+                    })
+                )
             );
         }
     }]);

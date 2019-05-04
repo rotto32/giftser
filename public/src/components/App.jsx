@@ -24,12 +24,15 @@ class App extends React.Component {
         return (
             <div className="dash">
                 <nav className="top-nav">
-                    {`Hello ${this.state.username}`}
-                    <button>Log Out</button>
+                    <h1>Gifter</h1>
+                    <div className="current-user">
+                       {`Hello ${this.state.username}!`}
+                        <button>Log Out</button>
+                    </div>
                 </nav>
-                <div className="friend-list">
+               
                 <Friends />
-                </div>
+             
             </div>
         )
 
