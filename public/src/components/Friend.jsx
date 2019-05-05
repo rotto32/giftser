@@ -1,10 +1,13 @@
 import React from "react";
+import Gift from "./Gift.jsx";
 
 class Friend extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            friend: ""
+            friendId: "",
+            friendName: "",
+            gifts: []
 
         }
         this.handleClick = this.handleClick.bind(this);
@@ -12,33 +15,47 @@ class Friend extends React.Component {
     }
 
     handleClick(e) {
-        console.log(e.target.id)
         this.setState({
-            friend: e.target.id
+            friendId: e.target.id,
+            friendName: e.target.firstElementChild.innerHTML,
+            gifts: [{ id: '1', name: 'dog', link: '' }, { id: '2', name: 'bunny', link: '' }, { id: '3', name: 'cat', link: '' }]
         })
     }
 
     hideGifts() {
         this.setState({
-            friend: ""
+            friendId: ""
         })
     }
 
     render () {
-        let friendState = this.state.friend;
+        let friendState = this.state.friendId;
 
         if (friendState === "") {
             return (
-                <div id={this.props.friend.id} className="friend" onClick={this.handleClick}>
-                    <h4>{this.props.friend.name}</h4>
-                    <p>{this.props.friend.gifts}</p>
-                </div>
+              <div
+                id={this.props.friend.id}
+                className="friend"
+                onClick={this.handleClick}
+              >
+                <h4>{this.props.friend.name}</h4>
+                <p>{this.props.friend.gifts}</p>
+              </div>
             );
 
         } else {
             return (
-                <div>
-                    <button onClick={this.hideGifts}>x</button>
+                <div className="gift-list">
+                    <div className="gift-list-title">
+                        <h5>Gift Ideas for {this.state.friendName}</h5>
+                        <button className="btn-close" onClick={this.hideGifts}>x</button>
+                    </div>
+                    <ul>
+                        {this.state.gifts.map((el) => {
+                            return <Gift key={el.id} gift={el} />
+                        })}
+
+                    </ul>
                 </div>
             )
         }

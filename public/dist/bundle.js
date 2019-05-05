@@ -95,7 +95,7 @@
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "/*\nPalette\n#F7E1D7 CREAM\n#FF87AB PINK\n#565656 GREY\n#AEA4BF LAVENDAR\n#17BEBB TEAL\n\nFONTS\nfont-family: 'Abril Fatface', cursive;\nfont-family: 'Poppins', sans-serif;\n\n\n*/\n\n* {\n    margin: 0;\n    background-color: #F7E1D7;\n    color: #565656;\n    font-family: 'Poppins', sans-serif;\n    font-size: 16px;\n}\n\nnav {\n    display: flex;\n    background-size: cover;\n    justify-content: space-between;\n    background-color: #AEA4BF;\n    color: #565656;\n    border-bottom: 3px #17BEBB solid;\n}\n\nnav h1 {\n    margin-left: 10px;\n    background-color: #AEA4BF;\n    font-family: 'Abril Fatface', cursive;\n    font-size: 64px;\n    \n}\n\nbutton {\n    background-color:#17BEBB;\n    border-radius: 10px;\n    margin-left: 10px;\n}\n\nbutton:hover {\n    background-color:#FF87AB;\n}\n\n.app {\n    display: flex;\n}\n\n.current-user {\n    display: flex;\n    justify-content: space-around;\n    background-color: #AEA4BF;\n    align-items: center;\n    padding: 10px;\n}\n\n.content {\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    flex-direction: column;\n    padding-top: 40px;\n    width: 75%;\n}\n\n.content h3 {\n    font-size: 32px;\n    border-bottom: 3px #17BEBB solid;\n    margin-bottom: 20px;\n    padding-bottom: 0px;\n}\n\n.friend {\n    width: 100%;\n    display: flex;\n    justify-content: space-between;\n    align-content: flex-end;\n    border: 2px black solid;\n    border-radius: 3px;\n    padding-right: 30px;\n    padding-left: 30px;\n    margin-bottom: 20px;\n}\n\n\n.friend p {\n    font-size: 16px;\n}\n\n\n", ""]);
+exports.push([module.i, "/*\nPalette\n#F7E1D7 CREAM\n#FF87AB PINK\n#565656 GREY\n#AEA4BF LAVENDAR\n#17BEBB TEAL\n\nFONTS\nfont-family: 'Abril Fatface', cursive;\nfont-family: 'Poppins', sans-serif;\n\n\n*/\n\n* {\n    margin: 0;\n    /* background-color: #F7E1D7; */\n    color: #565656;\n    font-family: 'Poppins', sans-serif;\n    font-size: 16px;\n}\n\nnav {\n    display: flex;\n    background-size: cover;\n    justify-content: space-between;\n    background-color: #AEA4BF;\n    color: #565656;\n    border-bottom: 3px #17BEBB solid;\n}\n\nnav h1 {\n    margin-left: 10px;\n    background-color: #AEA4BF;\n    font-family: 'Abril Fatface', cursive;\n    font-size: 64px;\n    \n}\n\nbutton {\n    background-color:#17BEBB;\n    border-radius: 10px;\n    margin-left: 10px;\n}\n\nbutton:hover {\n    background-color:#FF87AB;\n}\n\nul{\n    list-style: none;\n}\n\n\n\n.app {\n    display: flex;\n}\n\n.btn-close {\n    font-size: 8px;\n    padding: 2px 8px;\n\n}\n\n.current-user {\n    display: flex;\n    justify-content: space-around;\n    background-color: #AEA4BF;\n    align-items: center;\n    padding: 10px;\n}\n\n.content {\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    flex-direction: column;\n    padding-top: 40px;\n    width: 700px;\n}\n\n.content h3 {\n    font-size: 32px;\n    border-bottom: 3px #17BEBB solid;\n    margin-bottom: 20px;\n    padding-bottom: 0px;\n}\n\n.friend {\n    width: 300px;\n    height: 40px;\n    display: flex;\n    background-color: #AEA4BF;\n    justify-content: space-between;\n    align-content: center;\n    border: 2px #565656 solid;\n    border-radius: 3px;\n    padding-right: 30px;\n    padding-left: 30px;\n    margin-bottom: 20px;\n}\n\n\n.friend p {\n    font-size: 16px;\n    background-color: #AEA4BF;\n}\n\n.friend h4 {\n    background-color: #AEA4BF;\n}\n\n.gift-list {\n    padding-bottom: 10px;\n    background-color:#F7E1D7;\n    border: 2px #17BEBB solid;\n    margin: 20px;\n}\n\n.gift-list-title {\n    display: flex;\n    flex-direction: row;\n}\n\n\n", ""]);
 
 
 
@@ -25568,6 +25568,10 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Gift = __webpack_require__(/*! ./Gift.jsx */ "./public/src/components/Gift.jsx");
+
+var _Gift2 = _interopRequireDefault(_Gift);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25585,7 +25589,9 @@ var Friend = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Friend.__proto__ || Object.getPrototypeOf(Friend)).call(this, props));
 
         _this.state = {
-            friend: ""
+            friendId: "",
+            friendName: "",
+            gifts: []
 
         };
         _this.handleClick = _this.handleClick.bind(_this);
@@ -25596,27 +25602,32 @@ var Friend = function (_React$Component) {
     _createClass(Friend, [{
         key: "handleClick",
         value: function handleClick(e) {
-            console.log(e.target.id);
             this.setState({
-                friend: e.target.id
+                friendId: e.target.id,
+                friendName: e.target.firstElementChild.innerHTML,
+                gifts: [{ id: '1', name: 'dog', link: '' }, { id: '2', name: 'bunny', link: '' }, { id: '3', name: 'cat', link: '' }]
             });
         }
     }, {
         key: "hideGifts",
         value: function hideGifts() {
             this.setState({
-                friend: ""
+                friendId: ""
             });
         }
     }, {
         key: "render",
         value: function render() {
-            var friendState = this.state.friend;
+            var friendState = this.state.friendId;
 
             if (friendState === "") {
                 return _react2.default.createElement(
                     "div",
-                    { id: this.props.friend.id, className: "friend", onClick: this.handleClick },
+                    {
+                        id: this.props.friend.id,
+                        className: "friend",
+                        onClick: this.handleClick
+                    },
                     _react2.default.createElement(
                         "h4",
                         null,
@@ -25631,11 +25642,28 @@ var Friend = function (_React$Component) {
             } else {
                 return _react2.default.createElement(
                     "div",
-                    null,
+                    { className: "gift-list" },
                     _react2.default.createElement(
-                        "button",
-                        { onClick: this.hideGifts },
-                        "x"
+                        "div",
+                        { className: "gift-list-title" },
+                        _react2.default.createElement(
+                            "h5",
+                            null,
+                            "Gift Ideas for ",
+                            this.state.friendName
+                        ),
+                        _react2.default.createElement(
+                            "button",
+                            { className: "btn-close", onClick: this.hideGifts },
+                            "x"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "ul",
+                        null,
+                        this.state.gifts.map(function (el) {
+                            return _react2.default.createElement(_Gift2.default, { key: el.id, gift: el });
+                        })
                     )
                 );
             }
@@ -25721,6 +25749,64 @@ var Friends = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Friends;
+
+/***/ }),
+
+/***/ "./public/src/components/Gift.jsx":
+/*!****************************************!*\
+  !*** ./public/src/components/Gift.jsx ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Gift = function (_React$Component) {
+    _inherits(Gift, _React$Component);
+
+    function Gift(props) {
+        _classCallCheck(this, Gift);
+
+        var _this = _possibleConstructorReturn(this, (Gift.__proto__ || Object.getPrototypeOf(Gift)).call(this, props));
+
+        _this.state = {};
+        return _this;
+    }
+
+    _createClass(Gift, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "li",
+                null,
+                this.props.gift.name
+            );
+        }
+    }]);
+
+    return Gift;
+}(_react2.default.Component);
+
+exports.default = Gift;
 
 /***/ }),
 
