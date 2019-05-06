@@ -6,7 +6,7 @@ class Friends extends React.Component {
         super(props);
 
         this.state = {
-            friends: [{ id: 1, name: "Ray", gifts: 3 }, { id: 2, name: "Chris", gifts: 5 }, { id: 3, name: "Sen", gifts: 7 }]
+            friends: [{ user_id: 1, name: "Ray", gift_count: 3 }, { user_id: 2, name: "Chris", gift_count: 5 }, { user_id: 3, name: "Sen", gift_count: 7 }]
         }
     }
 

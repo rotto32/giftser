@@ -18,7 +18,7 @@ class Friend extends React.Component {
         this.setState({
             friendId: e.target.id,
             friendName: e.target.firstElementChild.innerHTML,
-            gifts: [{ id: '1', name: 'dog', link: '' }, { id: '2', name: 'bunny', link: '' }, { id: '3', name: 'cat', link: '' }]
+            gifts: [{ gift_id: '1', name: 'dog', link: '' }, { gift_id: '2', name: 'bunny', link: '' }, { gift_id: '3', name: 'cat', link: '' }]
         })
     }
 
@@ -34,7 +34,7 @@ class Friend extends React.Component {
         if (friendState === "") {
             return (
               <div
-                id={this.props.friend.id}
+                id={this.props.friend.gift_id}
                 className="friend"
                 onClick={this.handleClick}
               >
@@ -52,7 +52,7 @@ class Friend extends React.Component {
                     </div>
                     <ul>
                         {this.state.gifts.map((el) => {
-                            return <Gift key={el.id} gift={el} />
+                            return <Gift key={el.gift_id} gift={el} />
                         })}
 
                     </ul>
