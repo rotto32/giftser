@@ -59,3 +59,10 @@ typings/
 
 # next.js build output
 .next
+
+# db schema
+db/schema.txt
+
+#db secrets
+dbConfiguration.js
+
