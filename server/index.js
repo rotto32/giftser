@@ -3,6 +3,7 @@ const express = require('express');
 const db = require('../db/dataHandlers');
 const path = require('path');
 const cors = require("cors");
+const bodyParse = require("body-parser");
 
 const app = express();
 // const dbConfig = 'dbConfiguration.js';
@@ -13,6 +14,7 @@ const port = 8901;
 
 /*******STATIC SERVE **********/
 app.use(express.static(path.join(__dirname, "../public/dist")));
+app.use(bodyParse.json());
 
 
 
@@ -37,6 +39,25 @@ app.get('/api/gifts/:user_id', cors(), (req, res) => {
         db.getGiftDataFromList(data.rows[0].gifts, (giftData) => {
             res.send(giftData.rows);
         })
+    })
+})
+
+app.post('/api/gifts/:user_id', cors(), (req, res) => {
+    db.addGift(req.params.user_id, req.body, (response) =>{
+        res.status(201).send(response);
+    })
+})
+
+/*************COMMENTs TABLE ************/
+app.get('/api/comments/:gift_id', cors(), (req, res) => {
+    db.getComments(req.params.gift_id, (data) => {
+        res.send(data.rows);
+    })
+})
+
+app.post('/api/comments/:gift_id', cors(), (req, res) => {
+    db.postComment(req.params.gift_id, req.body, (response)=>{
+        res.status(201).send(response);
     })
 })
 

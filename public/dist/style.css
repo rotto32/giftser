@@ -45,6 +45,15 @@ button {
     margin-left: 10px;
 }
 
+.btn-add-comment {
+    width: 100px;
+}
+
+.btn-add-gift {
+    width: 100px;
+}
+
+
 button:hover {
     background-color:#FF87AB;
 }

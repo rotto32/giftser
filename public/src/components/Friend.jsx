@@ -8,12 +8,20 @@ class Friend extends React.Component {
         this.state = {
             friendId: "",
             friendName: "",
-            gifts: []
+            gifts: [],
+            showGiftBox: false,
+            uIdForNewGift: "",
+            newGiftName: "",
+            newGiftType: "",
+
 
         }
         this.handleClick = this.handleClick.bind(this);
         this.hideGifts = this.hideGifts.bind(this);
         this.getData = this.getData.bind(this);
+        this.showGiftBox = this.showGiftBox.bind(this);
+        this.handleInput = this.handleInput.bind(this);
+        this.addGift = this.addGift.bind(this);
     }
 
     handleClick(e) {
@@ -29,7 +37,7 @@ class Friend extends React.Component {
         // })
     }
 
-    getData (e) {
+    getData (e) {  
         axios.get(`/api/gifts/${e.target.id}`)
             .then(data => {
                 this.setState({
@@ -45,8 +53,39 @@ class Friend extends React.Component {
         })
     }
 
+    showGiftBox(e) {
+        this.setState({
+            showGiftBox: true,
+            uIdForNewGift: e.target.id
+        })
+
+    }
+
+    handleInput(e) {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
+
+    addGift(e) {
+        e.preventDefault();
+        this.setState({
+            showGiftBox: false
+        })
+        axios.post(`/api/gifts/${this.state.uIdForNewGift}`,
+        {
+            gift_name: this.state.newGiftName,
+            user_id: this.state.uIdForNewGift,
+            type: this.state.newGiftType
+        })
+            .then(()=>{console.log('success adding gift')})
+            .catch((e)=>{console.log(e)})
+
+    }
+
     render () {
         let friendState = this.state.gifts;
+        let showGiftBox = this.state.showGiftBox;
 
         if (friendState.length === 0) {
             return (
@@ -67,7 +106,7 @@ class Friend extends React.Component {
               </div>
             );
 
-        } else {
+        } else if (!showGiftBox) {
             return (
                 <div className="gift-list">
                     <div className="gift-list-title">
@@ -80,11 +119,49 @@ class Friend extends React.Component {
                         })}
 
                     </ul>
+                    <button id={this.props.friend.user_id}className="btn-add-gift" onClick={this.showGiftBox}>Add a gift idea</button>
                 </div>
             )
+        } else if (showGiftBox) {
+            return (
+                <div className="gift-list">
+                    <div className="gift-list-title">
+                        <h5>Gift Ideas</h5>
+                        <button className="btn-close" onClick={this.hideGifts}>x</button>
+                    </div>
+                    <ul>
+                        {this.state.gifts.map((el) => {
+                            return <Gift key={el.gift_id} gift={el} />
+                        })}
+
+                    </ul>
+                    <form onSubmit={this.addGift}>
+                        <label htmlFor="newGiftName">New gift idea: </label><br />
+                        <input
+                            type="text"
+                            id="newGiftName"
+                            value={this.state.newGiftName}
+                            onChange={this.handleInput}
+                            required
+                        /> <br />
+
+                        <select id="newGiftType" onChange={this.handleInput}>
+                            <option value="">--Please choose an event--</option>
+                            <option value="birthday">Birthday</option>
+                            <option value="anniversary">Anniversary</option>
+                            <option value="valentines">Valentines</option>
+                            <option value="christmas">Christmas</option>
+                            <option value="just because">Just Because</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <button>Submit</button>
+
+
+                    </form>
+                </div>
+
+            )
         }
-
-
     }
 }
 

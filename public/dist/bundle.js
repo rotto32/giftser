@@ -1793,7 +1793,7 @@ function isSlowBuffer (obj) {
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "/*\nPalette\n#F7E1D7 CREAM\n#FF87AB PINK\n#565656 GREY\n#AEA4BF LAVENDAR\n#17BEBB TEAL\n\nFONTS\nfont-family: 'Abril Fatface', cursive;\nfont-family: 'Poppins', sans-serif;\n\n\n*/\n\n* {\n    margin: 0;\n    /* background-color: #F7E1D7; */\n    color: #565656;\n    font-family: 'Poppins', sans-serif;\n    font-size: 16px;\n}\n\nnav {\n    display: flex;\n    background-size: cover;\n    justify-content: space-between;\n    background-color: #AEA4BF;\n    color: #565656;\n    border-bottom: 3px #17BEBB solid;\n}\n\nnav h1 {\n    margin-left: 10px;\n    background-color: #AEA4BF;\n    font-family: 'Abril Fatface', cursive;\n    font-size: 64px;\n    \n}\n\nbutton {\n    width: 80px;\n    background-color:#17BEBB;\n    border-radius: 5px;\n    margin-left: 10px;\n}\n\nbutton:hover {\n    background-color:#FF87AB;\n}\n\nul{\n    list-style: none;\n}\n\n\n\n.app {\n    display: flex;\n}\n\n.btn-close {\n    font-size: 8px;\n    padding: 2px 8px;\n\n}\n\n.current-user {\n    display: flex;\n    justify-content: space-around;\n    background-color: #AEA4BF;\n    align-items: center;\n    padding: 10px;\n}\n\n.content {\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    flex-direction: column;\n    padding-top: 40px;\n    width: 700px;\n}\n\n.content h3 {\n    font-size: 32px;\n    border-bottom: 3px #17BEBB solid;\n    margin-bottom: 20px;\n    padding-bottom: 0px;\n}\n\n.friend {\n    width: 300px;\n    height: 60px;\n    display: flex;\n    background-color: #AEA4BF;\n    justify-content: space-between;\n    align-content: center;\n    border: 2px #565656 solid;\n    border-radius: 3px;\n    padding-right: 30px;\n    padding-left: 30px;\n    margin-bottom: 20px;\n}\n\n\n.friend p {\n    font-size: 16px;\n    background-color: #AEA4BF;\n}\n\n.friend h4 {\n    background-color: #AEA4BF;\n}\n\n.gift-list {\n    padding-bottom: 10px;\n    background-color:#F7E1D7;\n    border: 2px #17BEBB solid;\n    margin: 20px;\n}\n\n.gift-list-title {\n    display: flex;\n    flex-direction: row;\n}\n\n\n", ""]);
+exports.push([module.i, "/*\nPalette\n#F7E1D7 CREAM\n#FF87AB PINK\n#565656 GREY\n#AEA4BF LAVENDAR\n#17BEBB TEAL\n\nFONTS\nfont-family: 'Abril Fatface', cursive;\nfont-family: 'Poppins', sans-serif;\n\n\n*/\n\n* {\n    margin: 0;\n    /* background-color: #F7E1D7; */\n    color: #565656;\n    font-family: 'Poppins', sans-serif;\n    font-size: 16px;\n}\n\nnav {\n    display: flex;\n    background-size: cover;\n    justify-content: space-between;\n    background-color: #AEA4BF;\n    color: #565656;\n    border-bottom: 3px #17BEBB solid;\n}\n\nnav h1 {\n    margin-left: 10px;\n    background-color: #AEA4BF;\n    font-family: 'Abril Fatface', cursive;\n    font-size: 64px;\n    \n}\n\nbutton {\n    width: 80px;\n    background-color:#17BEBB;\n    border-radius: 5px;\n    margin-left: 10px;\n}\n\n.btn-add-comment {\n    width: 100px;\n}\n\n.btn-add-gift {\n    width: 100px;\n}\n\n\nbutton:hover {\n    background-color:#FF87AB;\n}\n\nul{\n    list-style: none;\n}\n\n\n\n.app {\n    display: flex;\n}\n\n.btn-close {\n    font-size: 8px;\n    padding: 2px 8px;\n\n}\n\n.current-user {\n    display: flex;\n    justify-content: space-around;\n    background-color: #AEA4BF;\n    align-items: center;\n    padding: 10px;\n}\n\n.content {\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    flex-direction: column;\n    padding-top: 40px;\n    width: 700px;\n}\n\n.content h3 {\n    font-size: 32px;\n    border-bottom: 3px #17BEBB solid;\n    margin-bottom: 20px;\n    padding-bottom: 0px;\n}\n\n.friend {\n    width: 300px;\n    height: 60px;\n    display: flex;\n    background-color: #AEA4BF;\n    justify-content: space-between;\n    align-content: center;\n    border: 2px #565656 solid;\n    border-radius: 3px;\n    padding-right: 30px;\n    padding-left: 30px;\n    margin-bottom: 20px;\n}\n\n\n.friend p {\n    font-size: 16px;\n    background-color: #AEA4BF;\n}\n\n.friend h4 {\n    background-color: #AEA4BF;\n}\n\n.gift-list {\n    padding-bottom: 10px;\n    background-color:#F7E1D7;\n    border: 2px #17BEBB solid;\n    margin: 20px;\n}\n\n.gift-list-title {\n    display: flex;\n    flex-direction: row;\n}\n\n\n", ""]);
 
 
 
@@ -45154,7 +45154,11 @@ var Comments = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Comments.__proto__ || Object.getPrototypeOf(Comments)).call(this, props));
 
-    _this.state = {};
+    _this.state = {
+      comment: "",
+      commentId: ""
+
+    };
 
     _this.updateComment = _this.updateComment.bind(_this);
     return _this;
@@ -45162,7 +45166,13 @@ var Comments = function (_React$Component) {
 
   _createClass(Comments, [{
     key: "updateComment",
-    value: function updateComment() {}
+    value: function updateComment(e) {
+      console.log(e.target);
+      // this.setState({
+      //   comment: ""
+      // })
+
+    }
   }, {
     key: "render",
     value: function render() {
@@ -45172,18 +45182,23 @@ var Comments = function (_React$Component) {
         _react2.default.createElement(
           "div",
           { className: "comment-box-user" },
-          this.props.comment.user,
+          this.props.comment.name,
           " - ",
           this.props.comment.timestamp
         ),
         _react2.default.createElement(
           "div",
-          { className: "comment-box-comment" },
+          {
+            className: "comment-box-comment"
+          },
           this.props.comment.comment
         ),
         _react2.default.createElement(
           "button",
-          { onClick: this.updateComment },
+          {
+            onClick: this.updateComment,
+            id: this.props.comment.comment_id
+          },
           "Update"
         )
       );
@@ -45227,6 +45242,8 @@ var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -45244,12 +45261,19 @@ var Friend = function (_React$Component) {
         _this.state = {
             friendId: "",
             friendName: "",
-            gifts: []
+            gifts: [],
+            showGiftBox: false,
+            uIdForNewGift: "",
+            newGiftName: "",
+            newGiftType: ""
 
         };
         _this.handleClick = _this.handleClick.bind(_this);
         _this.hideGifts = _this.hideGifts.bind(_this);
         _this.getData = _this.getData.bind(_this);
+        _this.showGiftBox = _this.showGiftBox.bind(_this);
+        _this.handleInput = _this.handleInput.bind(_this);
+        _this.addGift = _this.addGift.bind(_this);
         return _this;
     }
 
@@ -45288,9 +45312,40 @@ var Friend = function (_React$Component) {
             });
         }
     }, {
+        key: "showGiftBox",
+        value: function showGiftBox(e) {
+            this.setState({
+                showGiftBox: true,
+                uIdForNewGift: e.target.id
+            });
+        }
+    }, {
+        key: "handleInput",
+        value: function handleInput(e) {
+            this.setState(_defineProperty({}, e.target.id, e.target.value));
+        }
+    }, {
+        key: "addGift",
+        value: function addGift(e) {
+            e.preventDefault();
+            this.setState({
+                showGiftBox: false
+            });
+            _axios2.default.post("/api/gifts/" + this.state.uIdForNewGift, {
+                gift_name: this.state.newGiftName,
+                user_id: this.state.uIdForNewGift,
+                type: this.state.newGiftType
+            }).then(function () {
+                console.log('success adding gift');
+            }).catch(function (e) {
+                console.log(e);
+            });
+        }
+    }, {
         key: "render",
         value: function render() {
             var friendState = this.state.gifts;
+            var showGiftBox = this.state.showGiftBox;
 
             if (friendState.length === 0) {
                 return _react2.default.createElement(
@@ -45317,7 +45372,7 @@ var Friend = function (_React$Component) {
                         " Gifts"
                     )
                 );
-            } else {
+            } else if (!showGiftBox) {
                 return _react2.default.createElement(
                     "div",
                     { className: "gift-list" },
@@ -45341,6 +45396,100 @@ var Friend = function (_React$Component) {
                         this.state.gifts.map(function (el) {
                             return _react2.default.createElement(_Gift2.default, { key: el.gift_id, gift: el });
                         })
+                    ),
+                    _react2.default.createElement(
+                        "button",
+                        { id: this.props.friend.user_id, className: "btn-add-gift", onClick: this.showGiftBox },
+                        "Add a gift idea"
+                    )
+                );
+            } else if (showGiftBox) {
+                return _react2.default.createElement(
+                    "div",
+                    { className: "gift-list" },
+                    _react2.default.createElement(
+                        "div",
+                        { className: "gift-list-title" },
+                        _react2.default.createElement(
+                            "h5",
+                            null,
+                            "Gift Ideas"
+                        ),
+                        _react2.default.createElement(
+                            "button",
+                            { className: "btn-close", onClick: this.hideGifts },
+                            "x"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "ul",
+                        null,
+                        this.state.gifts.map(function (el) {
+                            return _react2.default.createElement(_Gift2.default, { key: el.gift_id, gift: el });
+                        })
+                    ),
+                    _react2.default.createElement(
+                        "form",
+                        { onSubmit: this.addGift },
+                        _react2.default.createElement(
+                            "label",
+                            { htmlFor: "newGiftName" },
+                            "New gift idea: "
+                        ),
+                        _react2.default.createElement("br", null),
+                        _react2.default.createElement("input", {
+                            type: "text",
+                            id: "newGiftName",
+                            value: this.state.newGiftName,
+                            onChange: this.handleInput,
+                            required: true
+                        }),
+                        " ",
+                        _react2.default.createElement("br", null),
+                        _react2.default.createElement(
+                            "select",
+                            { id: "newGiftType", onChange: this.handleInput },
+                            _react2.default.createElement(
+                                "option",
+                                { value: "" },
+                                "--Please choose an event--"
+                            ),
+                            _react2.default.createElement(
+                                "option",
+                                { value: "birthday" },
+                                "Birthday"
+                            ),
+                            _react2.default.createElement(
+                                "option",
+                                { value: "anniversary" },
+                                "Anniversary"
+                            ),
+                            _react2.default.createElement(
+                                "option",
+                                { value: "valentines" },
+                                "Valentines"
+                            ),
+                            _react2.default.createElement(
+                                "option",
+                                { value: "christmas" },
+                                "Christmas"
+                            ),
+                            _react2.default.createElement(
+                                "option",
+                                { value: "just because" },
+                                "Just Because"
+                            ),
+                            _react2.default.createElement(
+                                "option",
+                                { value: "other" },
+                                "Other"
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "button",
+                            null,
+                            "Submit"
+                        )
                     )
                 );
             }
@@ -45470,7 +45619,13 @@ var _Comments = __webpack_require__(/*! ./Comments.jsx */ "./public/src/componen
 
 var _Comments2 = _interopRequireDefault(_Comments);
 
+var _axios = __webpack_require__(/*! axios */ "../../../node_modules/axios/index.js");
+
+var _axios2 = _interopRequireDefault(_axios);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -45488,14 +45643,37 @@ var Gift = function (_React$Component) {
 
         _this.state = {
             showComments: false,
-            comments: [{ comment_id: 1, user: "Sen", comment: "I'll get this one!", timestamp: Date.now() }, { comment_id: 2, user: "Chris", comment: "What about bitcoin?", timestamp: "Jan/1/2019" }]
+            comments: [],
+            giftIdForNewComment: "",
+            showCommentBox: false,
+            newCommentName: "",
+            newCommentText: ""
         };
 
         _this.toggleComments = _this.toggleComments.bind(_this);
+        _this.getComments = _this.getComments.bind(_this);
+        _this.openCommentBox = _this.openCommentBox.bind(_this);
+        _this.handleInput = _this.handleInput.bind(_this);
+        _this.addComment = _this.addComment.bind(_this);
+        _this.updateComments = _this.updateComments.bind(_this);
         return _this;
     }
 
     _createClass(Gift, [{
+        key: "getComments",
+        value: function getComments(e) {
+            var _this2 = this;
+
+            _axios2.default.get("/api/comments/" + e.target.id).then(function (data) {
+                _this2.setState({
+                    showComments: !_this2.state.showComments,
+                    comments: data.data
+                });
+            }).catch(function (e) {
+                return console.log(e);
+            });
+        }
+    }, {
         key: "toggleComments",
         value: function toggleComments() {
             this.setState({
@@ -45503,10 +45681,57 @@ var Gift = function (_React$Component) {
             });
         }
     }, {
+        key: "openCommentBox",
+        value: function openCommentBox(e) {
+            this.setState({
+                giftIdForNewComment: e.target.id,
+                showCommentBox: !this.state.showCommentBox
+            });
+        }
+    }, {
+        key: "handleInput",
+        value: function handleInput(e) {
+            this.setState(_defineProperty({}, e.target.id, e.target.value));
+        }
+    }, {
+        key: "addComment",
+        value: function addComment(e) {
+            var _this3 = this;
+
+            e.preventDefault();
+            this.setState({
+                showCommentBox: !this.state.showCommentBox
+            });
+            _axios2.default.post("/api/comments/" + this.state.giftIdForNewComment, {
+                name: this.state.newCommentName,
+                comment: this.state.newCommentText,
+                timestamp: Date.now(),
+                gift_id: this.state.giftIdForNewComment
+            }).then(function () {
+                _this3.updateComments(_this3.state.giftIdForNewComment);
+            }).catch(function (e) {
+                console.log(e);
+            });
+        }
+    }, {
+        key: "updateComments",
+        value: function updateComments(id) {
+            var _this4 = this;
+
+            _axios2.default.get("/api/comments/" + id).then(function (data) {
+                _this4.setState({
+                    comments: data.data
+                });
+            }).catch(function (e) {
+                return console.log(e);
+            });
+        }
+    }, {
         key: "render",
         value: function render() {
             var showComments = this.state.showComments;
-            if (showComments) {
+            var showCommentBox = this.state.showCommentBox;
+            if (showComments && !showCommentBox) {
                 return _react2.default.createElement(
                     "div",
                     null,
@@ -45523,12 +45748,75 @@ var Gift = function (_React$Component) {
                     ),
                     this.state.comments.map(function (el) {
                         return _react2.default.createElement(_Comments2.default, { key: el.comment_id, comment: el });
-                    })
+                    }),
+                    _react2.default.createElement(
+                        "button",
+                        { id: this.props.gift.gift_id, className: "btn-add-comment", onClick: this.openCommentBox },
+                        "Add Comment"
+                    )
+                );
+            } else if (showCommentBox && showComments) {
+                return _react2.default.createElement(
+                    "div",
+                    null,
+                    _react2.default.createElement(
+                        "h5",
+                        null,
+                        this.props.gift.gift_name,
+                        " ",
+                        _react2.default.createElement(
+                            "button",
+                            { onClick: this.toggleComments },
+                            "x"
+                        )
+                    ),
+                    this.state.comments.map(function (el) {
+                        return _react2.default.createElement(_Comments2.default, { key: el.comment_id, comment: el });
+                    }),
+                    _react2.default.createElement(
+                        "form",
+                        { onSubmit: this.addComment },
+                        _react2.default.createElement(
+                            "label",
+                            { htmlFor: "name" },
+                            "Enter your name: "
+                        ),
+                        _react2.default.createElement("br", null),
+                        _react2.default.createElement("input", {
+                            type: "text",
+                            id: "newCommentName",
+                            value: this.state.newCommentName,
+                            onChange: this.handleInput,
+                            required: true
+                        }),
+                        " ",
+                        _react2.default.createElement("br", null),
+                        _react2.default.createElement(
+                            "label",
+                            { htmlFor: "new-comment" },
+                            "Leave a comment:"
+                        ),
+                        _react2.default.createElement("br", null),
+                        _react2.default.createElement("textarea", {
+                            value: this.state.newCommentText,
+                            onChange: this.handleInput,
+                            id: "newCommentText",
+                            rows: "5",
+                            cols: "33"
+                        }),
+                        " ",
+                        _react2.default.createElement("br", null),
+                        _react2.default.createElement(
+                            "button",
+                            null,
+                            "Submit"
+                        )
+                    )
                 );
             } else {
                 return _react2.default.createElement(
                     "li",
-                    { onClick: this.toggleComments },
+                    { onClick: this.getComments, id: this.props.gift.gift_id },
                     this.props.gift.gift_name
                 );
             }
