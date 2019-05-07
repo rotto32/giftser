@@ -1,5 +1,6 @@
 import React from "react";
 import Gift from "./Gift.jsx";
+import axios from "axios";
 
 class Friend extends React.Component {
     constructor(props) {
@@ -12,34 +13,57 @@ class Friend extends React.Component {
         }
         this.handleClick = this.handleClick.bind(this);
         this.hideGifts = this.hideGifts.bind(this);
+        this.getData = this.getData.bind(this);
     }
 
     handleClick(e) {
         this.setState({
-            friendId: e.target.id,
-            friendName: e.target.firstElementChild.innerHTML,
-            gifts: [{ gift_id: '1', name: 'dog', link: '' }, { gift_id: '2', name: 'bunny', link: '' }, { gift_id: '3', name: 'cat', link: '' }]
+          friendId: e.target.id,
+          friendName: e.target.firstElementChild.innerHTML
         })
+    
+        // this.setState({
+        //     friendId: e.target.id,
+        //     friendName: e.target.firstElementChild.innerHTML,
+        //     gifts: [{ gift_id: '1', name: 'dog', link: '' }, { gift_id: '2', name: 'bunny', link: '' }, { gift_id: '3', name: 'cat', link: '' }]
+        // })
+    }
+
+    getData (e) {
+        axios.get(`/api/gifts/${e.target.id}`)
+            .then(data => {
+                this.setState({
+                    gifts: data.data
+                });
+            })
+            .catch((e) => { console.log(e) })
     }
 
     hideGifts() {
         this.setState({
-            friendId: ""
+            gifts: []
         })
     }
 
     render () {
-        let friendState = this.state.friendId;
+        let friendState = this.state.gifts;
 
-        if (friendState === "") {
+        if (friendState.length === 0) {
             return (
               <div
-                id={this.props.friend.user_id}
+                // id={this.props.friend.user_id}
                 className="friend"
-                onClick={this.handleClick}
+                // onClick={this.handleClick}
+                // onClick = {this.getData}
               >
                 <h4>{this.props.friend.name}</h4>
-                <p>{this.props.friend.gifts}</p>
+                <button
+                  id={this.props.friend.user_id}
+                  onClick={this.getData}
+                >
+                  Show {this.props.friend.gift_count} Gifts
+                </button>
+                {/* <p>{this.props.friend.gift_count}</p> */}
               </div>
             );
 
@@ -47,7 +71,7 @@ class Friend extends React.Component {
             return (
                 <div className="gift-list">
                     <div className="gift-list-title">
-                        <h5>Gift Ideas for {this.state.friendName}</h5>
+                        <h5>Gift Ideas</h5>
                         <button className="btn-close" onClick={this.hideGifts}>x</button>
                     </div>
                     <ul>

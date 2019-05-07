@@ -1793,7 +1793,7 @@ function isSlowBuffer (obj) {
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "/*\nPalette\n#F7E1D7 CREAM\n#FF87AB PINK\n#565656 GREY\n#AEA4BF LAVENDAR\n#17BEBB TEAL\n\nFONTS\nfont-family: 'Abril Fatface', cursive;\nfont-family: 'Poppins', sans-serif;\n\n\n*/\n\n* {\n    margin: 0;\n    /* background-color: #F7E1D7; */\n    color: #565656;\n    font-family: 'Poppins', sans-serif;\n    font-size: 16px;\n}\n\nnav {\n    display: flex;\n    background-size: cover;\n    justify-content: space-between;\n    background-color: #AEA4BF;\n    color: #565656;\n    border-bottom: 3px #17BEBB solid;\n}\n\nnav h1 {\n    margin-left: 10px;\n    background-color: #AEA4BF;\n    font-family: 'Abril Fatface', cursive;\n    font-size: 64px;\n    \n}\n\nbutton {\n    background-color:#17BEBB;\n    border-radius: 10px;\n    margin-left: 10px;\n}\n\nbutton:hover {\n    background-color:#FF87AB;\n}\n\nul{\n    list-style: none;\n}\n\n\n\n.app {\n    display: flex;\n}\n\n.btn-close {\n    font-size: 8px;\n    padding: 2px 8px;\n\n}\n\n.current-user {\n    display: flex;\n    justify-content: space-around;\n    background-color: #AEA4BF;\n    align-items: center;\n    padding: 10px;\n}\n\n.content {\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    flex-direction: column;\n    padding-top: 40px;\n    width: 700px;\n}\n\n.content h3 {\n    font-size: 32px;\n    border-bottom: 3px #17BEBB solid;\n    margin-bottom: 20px;\n    padding-bottom: 0px;\n}\n\n.friend {\n    width: 300px;\n    height: 40px;\n    display: flex;\n    background-color: #AEA4BF;\n    justify-content: space-between;\n    align-content: center;\n    border: 2px #565656 solid;\n    border-radius: 3px;\n    padding-right: 30px;\n    padding-left: 30px;\n    margin-bottom: 20px;\n}\n\n\n.friend p {\n    font-size: 16px;\n    background-color: #AEA4BF;\n}\n\n.friend h4 {\n    background-color: #AEA4BF;\n}\n\n.gift-list {\n    padding-bottom: 10px;\n    background-color:#F7E1D7;\n    border: 2px #17BEBB solid;\n    margin: 20px;\n}\n\n.gift-list-title {\n    display: flex;\n    flex-direction: row;\n}\n\n\n", ""]);
+exports.push([module.i, "/*\nPalette\n#F7E1D7 CREAM\n#FF87AB PINK\n#565656 GREY\n#AEA4BF LAVENDAR\n#17BEBB TEAL\n\nFONTS\nfont-family: 'Abril Fatface', cursive;\nfont-family: 'Poppins', sans-serif;\n\n\n*/\n\n* {\n    margin: 0;\n    /* background-color: #F7E1D7; */\n    color: #565656;\n    font-family: 'Poppins', sans-serif;\n    font-size: 16px;\n}\n\nnav {\n    display: flex;\n    background-size: cover;\n    justify-content: space-between;\n    background-color: #AEA4BF;\n    color: #565656;\n    border-bottom: 3px #17BEBB solid;\n}\n\nnav h1 {\n    margin-left: 10px;\n    background-color: #AEA4BF;\n    font-family: 'Abril Fatface', cursive;\n    font-size: 64px;\n    \n}\n\nbutton {\n    width: 80px;\n    background-color:#17BEBB;\n    border-radius: 5px;\n    margin-left: 10px;\n}\n\nbutton:hover {\n    background-color:#FF87AB;\n}\n\nul{\n    list-style: none;\n}\n\n\n\n.app {\n    display: flex;\n}\n\n.btn-close {\n    font-size: 8px;\n    padding: 2px 8px;\n\n}\n\n.current-user {\n    display: flex;\n    justify-content: space-around;\n    background-color: #AEA4BF;\n    align-items: center;\n    padding: 10px;\n}\n\n.content {\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    flex-direction: column;\n    padding-top: 40px;\n    width: 700px;\n}\n\n.content h3 {\n    font-size: 32px;\n    border-bottom: 3px #17BEBB solid;\n    margin-bottom: 20px;\n    padding-bottom: 0px;\n}\n\n.friend {\n    width: 300px;\n    height: 60px;\n    display: flex;\n    background-color: #AEA4BF;\n    justify-content: space-between;\n    align-content: center;\n    border: 2px #565656 solid;\n    border-radius: 3px;\n    padding-right: 30px;\n    padding-left: 30px;\n    margin-bottom: 20px;\n}\n\n\n.friend p {\n    font-size: 16px;\n    background-color: #AEA4BF;\n}\n\n.friend h4 {\n    background-color: #AEA4BF;\n}\n\n.gift-list {\n    padding-bottom: 10px;\n    background-color:#F7E1D7;\n    border: 2px #17BEBB solid;\n    margin: 20px;\n}\n\n.gift-list-title {\n    display: flex;\n    flex-direction: row;\n}\n\n\n", ""]);
 
 
 
@@ -45221,6 +45221,10 @@ var _Gift = __webpack_require__(/*! ./Gift.jsx */ "./public/src/components/Gift.
 
 var _Gift2 = _interopRequireDefault(_Gift);
 
+var _axios = __webpack_require__(/*! axios */ "../../../node_modules/axios/index.js");
+
+var _axios2 = _interopRequireDefault(_axios);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -45245,6 +45249,7 @@ var Friend = function (_React$Component) {
         };
         _this.handleClick = _this.handleClick.bind(_this);
         _this.hideGifts = _this.hideGifts.bind(_this);
+        _this.getData = _this.getData.bind(_this);
         return _this;
     }
 
@@ -45253,29 +45258,48 @@ var Friend = function (_React$Component) {
         value: function handleClick(e) {
             this.setState({
                 friendId: e.target.id,
-                friendName: e.target.firstElementChild.innerHTML,
-                gifts: [{ gift_id: '1', name: 'dog', link: '' }, { gift_id: '2', name: 'bunny', link: '' }, { gift_id: '3', name: 'cat', link: '' }]
+                friendName: e.target.firstElementChild.innerHTML
+            });
+
+            // this.setState({
+            //     friendId: e.target.id,
+            //     friendName: e.target.firstElementChild.innerHTML,
+            //     gifts: [{ gift_id: '1', name: 'dog', link: '' }, { gift_id: '2', name: 'bunny', link: '' }, { gift_id: '3', name: 'cat', link: '' }]
+            // })
+        }
+    }, {
+        key: "getData",
+        value: function getData(e) {
+            var _this2 = this;
+
+            _axios2.default.get("/api/gifts/" + e.target.id).then(function (data) {
+                _this2.setState({
+                    gifts: data.data
+                });
+            }).catch(function (e) {
+                console.log(e);
             });
         }
     }, {
         key: "hideGifts",
         value: function hideGifts() {
             this.setState({
-                friendId: ""
+                gifts: []
             });
         }
     }, {
         key: "render",
         value: function render() {
-            var friendState = this.state.friendId;
+            var friendState = this.state.gifts;
 
-            if (friendState === "") {
+            if (friendState.length === 0) {
                 return _react2.default.createElement(
                     "div",
                     {
-                        id: this.props.friend.user_id,
-                        className: "friend",
-                        onClick: this.handleClick
+                        // id={this.props.friend.user_id}
+                        className: "friend"
+                        // onClick={this.handleClick}
+                        // onClick = {this.getData}
                     },
                     _react2.default.createElement(
                         "h4",
@@ -45283,9 +45307,14 @@ var Friend = function (_React$Component) {
                         this.props.friend.name
                     ),
                     _react2.default.createElement(
-                        "p",
-                        null,
-                        this.props.friend.gifts
+                        "button",
+                        {
+                            id: this.props.friend.user_id,
+                            onClick: this.getData
+                        },
+                        "Show ",
+                        this.props.friend.gift_count,
+                        " Gifts"
                     )
                 );
             } else {
@@ -45298,8 +45327,7 @@ var Friend = function (_React$Component) {
                         _react2.default.createElement(
                             "h5",
                             null,
-                            "Gift Ideas for ",
-                            this.state.friendName
+                            "Gift Ideas"
                         ),
                         _react2.default.createElement(
                             "button",
@@ -45371,7 +45399,7 @@ var Friends = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Friends.__proto__ || Object.getPrototypeOf(Friends)).call(this, props));
 
         _this.state = {
-            friends: [{ user_id: 1, name: "Ray", gift_count: 3 }, { user_id: 2, name: "Chris", gift_count: 5 }, { user_id: 3, name: "Sen", gift_count: 7 }]
+            friends: []
         };
         return _this;
     }
@@ -45381,9 +45409,9 @@ var Friends = function (_React$Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
-            _axios2.default.get("/api/friends/" + this.props.currentUser.user_id).then(function (data) {
+            _axios2.default.get("/api/friends/" + this.props.currentUser).then(function (data) {
                 _this2.setState({
-                    friends: data
+                    friends: data.data
                 });
             }).catch(function (e) {
                 console.log('error with getting friend data ', e);
@@ -45485,7 +45513,7 @@ var Gift = function (_React$Component) {
                     _react2.default.createElement(
                         "h5",
                         null,
-                        this.props.gift.name,
+                        this.props.gift.gift_name,
                         " ",
                         _react2.default.createElement(
                             "button",
@@ -45501,7 +45529,7 @@ var Gift = function (_React$Component) {
                 return _react2.default.createElement(
                     "li",
                     { onClick: this.toggleComments },
-                    this.props.gift.name
+                    this.props.gift.gift_name
                 );
             }
         }

@@ -25,4 +25,17 @@ function getFriendDataFromList (list, cb) {
 
 }
 
-module.exports = { getFriendList, getFriendDataFromList };
+function getGiftList (user_id, cb) {
+    client.query(`SELECT gifts FROM users WHERE user_id = ${user_id};`)
+        .then((data)=>{cb(data)})
+        .catch((e)=>{console.log(e)})
+}
+
+function getGiftDataFromList (list, cb) {
+    let listString = list.join(', ');
+    client.query(`SELECT * FROM gifts WHERE gift_id IN (${listString});`)
+        .then((data)=>{cb(data)})
+        .catch((e)=>{console.log(e)})
+}
+
+module.exports = { getFriendList, getFriendDataFromList, getGiftList, getGiftDataFromList };

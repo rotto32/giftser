@@ -25,7 +25,7 @@ class Gift extends React.Component {
             return (
               <div>
                 <h5>
-                  {this.props.gift.name}{" "}
+                  {this.props.gift.gift_name}{" "}
                   <button onClick={this.toggleComments}>x</button>
                 </h5>
 
@@ -38,7 +38,7 @@ class Gift extends React.Component {
         } else {
             return (
                 <li onClick={this.toggleComments}>
-                    {this.props.gift.name}
+                    {this.props.gift.gift_name}
                 </li>
             )
         }

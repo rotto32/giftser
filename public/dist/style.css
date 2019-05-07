@@ -39,8 +39,9 @@ nav h1 {
 }
 
 button {
+    width: 80px;
     background-color:#17BEBB;
-    border-radius: 10px;
+    border-radius: 5px;
     margin-left: 10px;
 }
 
@@ -90,7 +91,7 @@ ul{
 
 .friend {
     width: 300px;
-    height: 40px;
+    height: 60px;
     display: flex;
     background-color: #AEA4BF;
     justify-content: space-between;
