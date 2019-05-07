@@ -34,7 +34,7 @@ class Friend extends React.Component {
         if (friendState === "") {
             return (
               <div
-                id={this.props.friend.gift_id}
+                id={this.props.friend.user_id}
                 className="friend"
                 onClick={this.handleClick}
               >

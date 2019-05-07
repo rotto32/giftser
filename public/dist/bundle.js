@@ -43379,7 +43379,7 @@ var Friend = function (_React$Component) {
                 return _react2.default.createElement(
                     "div",
                     {
-                        id: this.props.friend.gift_id,
+                        id: this.props.friend.user_id,
                         className: "friend",
                         onClick: this.handleClick
                     },
@@ -43493,7 +43493,7 @@ var Friends = function (_React$Component) {
                     "div",
                     { className: "friends-list" },
                     this.state.friends.map(function (el) {
-                        return _react2.default.createElement(_Friend2.default, { key: el.id, friend: el });
+                        return _react2.default.createElement(_Friend2.default, { key: el.user_id, friend: el });
                     })
                 )
             );
