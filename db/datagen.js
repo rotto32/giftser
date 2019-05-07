@@ -125,8 +125,8 @@ function insertComments (l) {
 }
 
 insertUsers(1000);
-insertGifts(1000);
-insertComments(5000);
+// insertGifts(1000);
+// insertComments(5000);
 
 
 // client.end();

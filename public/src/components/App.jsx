@@ -10,7 +10,8 @@ class App extends React.Component {
         /* STATE */
         this.state = {
             loggedin: true,
-            username: "Adrienne"
+            username: "Adrienne",
+            user_id: 3
 
         }
         /* FUNCTION BINDINGS */
@@ -31,7 +32,7 @@ class App extends React.Component {
                     </div>
                 </nav>
                
-                <Friends />
+                <Friends currentUser = {this.state.user_id}/>
              
             </div>
         )
