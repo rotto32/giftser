@@ -91,16 +91,18 @@ class Gift extends React.Component {
         let showCommentBox = this.state.showCommentBox;
         if (showComments && !showCommentBox) {
             return (
-              <div>
+              <div className="comment-list">
                 <h5>
                   {this.props.gift.gift_name}{" "}
-                  <button onClick={this.toggleComments}>x</button>
+                  <button className="btn-close" onClick={this.toggleComments}>x</button>
                 </h5>
 
                 {this.state.comments.map(el => {
                   return <Comments key={el.comment_id} comment={el} />;
                 })}
-                <button id={this.props.gift.gift_id} className="btn-add-comment" onClick={this.openCommentBox}>Add Comment</button>
+                <div className="comment-end-btns">
+                  <button id={this.props.gift.gift_id} className="btn-add-comment" onClick={this.openCommentBox}>Add Comment</button>  <button className = "btn-big-close" onClick={this.toggleComments}>Close</button>
+                </div>
               </div>
             );
 

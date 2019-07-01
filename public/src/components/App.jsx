@@ -25,7 +25,7 @@ class App extends React.Component {
         return (
             <div className="dash">
                 <nav className="top-nav">
-                    <h1>Gifter</h1>
+                    <h1>Giftser</h1>
                     <div className="current-user">
                        {`Hello ${this.state.username}!`}
                         <button>Log Out</button>

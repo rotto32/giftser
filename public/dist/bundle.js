@@ -86,34 +86,34 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "../../../node_modules/axios/index.js":
-/*!******************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/index.js ***!
-  \******************************************************************/
+/***/ "./node_modules/axios/index.js":
+/*!*************************************!*\
+  !*** ./node_modules/axios/index.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! ./lib/axios */ "../../../node_modules/axios/lib/axios.js");
+module.exports = __webpack_require__(/*! ./lib/axios */ "./node_modules/axios/lib/axios.js");
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/adapters/xhr.js":
-/*!*****************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/adapters/xhr.js ***!
-  \*****************************************************************************/
+/***/ "./node_modules/axios/lib/adapters/xhr.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/adapters/xhr.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(/*! ./../utils */ "../../../node_modules/axios/lib/utils.js");
-var settle = __webpack_require__(/*! ./../core/settle */ "../../../node_modules/axios/lib/core/settle.js");
-var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ "../../../node_modules/axios/lib/helpers/buildURL.js");
-var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ "../../../node_modules/axios/lib/helpers/parseHeaders.js");
-var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ "../../../node_modules/axios/lib/helpers/isURLSameOrigin.js");
-var createError = __webpack_require__(/*! ../core/createError */ "../../../node_modules/axios/lib/core/createError.js");
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(/*! ./../helpers/btoa */ "../../../node_modules/axios/lib/helpers/btoa.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var settle = __webpack_require__(/*! ./../core/settle */ "./node_modules/axios/lib/core/settle.js");
+var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ "./node_modules/axios/lib/helpers/buildURL.js");
+var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ "./node_modules/axios/lib/helpers/parseHeaders.js");
+var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ "./node_modules/axios/lib/helpers/isURLSameOrigin.js");
+var createError = __webpack_require__(/*! ../core/createError */ "./node_modules/axios/lib/core/createError.js");
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(/*! ./../helpers/btoa */ "./node_modules/axios/lib/helpers/btoa.js");
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -210,7 +210,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(/*! ./../helpers/cookies */ "../../../node_modules/axios/lib/helpers/cookies.js");
+      var cookies = __webpack_require__(/*! ./../helpers/cookies */ "./node_modules/axios/lib/helpers/cookies.js");
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -289,20 +289,20 @@ module.exports = function xhrAdapter(config) {
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/axios.js":
-/*!**********************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/axios.js ***!
-  \**********************************************************************/
+/***/ "./node_modules/axios/lib/axios.js":
+/*!*****************************************!*\
+  !*** ./node_modules/axios/lib/axios.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(/*! ./utils */ "../../../node_modules/axios/lib/utils.js");
-var bind = __webpack_require__(/*! ./helpers/bind */ "../../../node_modules/axios/lib/helpers/bind.js");
-var Axios = __webpack_require__(/*! ./core/Axios */ "../../../node_modules/axios/lib/core/Axios.js");
-var defaults = __webpack_require__(/*! ./defaults */ "../../../node_modules/axios/lib/defaults.js");
+var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
+var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
+var Axios = __webpack_require__(/*! ./core/Axios */ "./node_modules/axios/lib/core/Axios.js");
+var defaults = __webpack_require__(/*! ./defaults */ "./node_modules/axios/lib/defaults.js");
 
 /**
  * Create an instance of Axios
@@ -335,15 +335,15 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ "../../../node_modules/axios/lib/cancel/Cancel.js");
-axios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ "../../../node_modules/axios/lib/cancel/CancelToken.js");
-axios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ "../../../node_modules/axios/lib/cancel/isCancel.js");
+axios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
+axios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ "./node_modules/axios/lib/cancel/CancelToken.js");
+axios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(/*! ./helpers/spread */ "../../../node_modules/axios/lib/helpers/spread.js");
+axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/axios/lib/helpers/spread.js");
 
 module.exports = axios;
 
@@ -353,10 +353,10 @@ module.exports.default = axios;
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/cancel/Cancel.js":
-/*!******************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/cancel/Cancel.js ***!
-  \******************************************************************************/
+/***/ "./node_modules/axios/lib/cancel/Cancel.js":
+/*!*************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/Cancel.js ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -384,17 +384,17 @@ module.exports = Cancel;
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/cancel/CancelToken.js":
-/*!***********************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/cancel/CancelToken.js ***!
-  \***********************************************************************************/
+/***/ "./node_modules/axios/lib/cancel/CancelToken.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/CancelToken.js ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__(/*! ./Cancel */ "../../../node_modules/axios/lib/cancel/Cancel.js");
+var Cancel = __webpack_require__(/*! ./Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -453,10 +453,10 @@ module.exports = CancelToken;
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/cancel/isCancel.js":
-/*!********************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/cancel/isCancel.js ***!
-  \********************************************************************************/
+/***/ "./node_modules/axios/lib/cancel/isCancel.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/isCancel.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -470,20 +470,20 @@ module.exports = function isCancel(value) {
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/core/Axios.js":
-/*!***************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/core/Axios.js ***!
-  \***************************************************************************/
+/***/ "./node_modules/axios/lib/core/Axios.js":
+/*!**********************************************!*\
+  !*** ./node_modules/axios/lib/core/Axios.js ***!
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__(/*! ./../defaults */ "../../../node_modules/axios/lib/defaults.js");
-var utils = __webpack_require__(/*! ./../utils */ "../../../node_modules/axios/lib/utils.js");
-var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ "../../../node_modules/axios/lib/core/InterceptorManager.js");
-var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ "../../../node_modules/axios/lib/core/dispatchRequest.js");
+var defaults = __webpack_require__(/*! ./../defaults */ "./node_modules/axios/lib/defaults.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ "./node_modules/axios/lib/core/InterceptorManager.js");
+var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ "./node_modules/axios/lib/core/dispatchRequest.js");
 
 /**
  * Create a new instance of Axios
@@ -512,7 +512,7 @@ Axios.prototype.request = function request(config) {
     }, arguments[1]);
   }
 
-  config = utils.merge(defaults, this.defaults, { method: 'get' }, config);
+  config = utils.merge(defaults, {method: 'get'}, this.defaults, config);
   config.method = config.method.toLowerCase();
 
   // Hook up interceptors middleware
@@ -561,17 +561,17 @@ module.exports = Axios;
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/core/InterceptorManager.js":
-/*!****************************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/core/InterceptorManager.js ***!
-  \****************************************************************************************/
+/***/ "./node_modules/axios/lib/core/InterceptorManager.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/axios/lib/core/InterceptorManager.js ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(/*! ./../utils */ "../../../node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 function InterceptorManager() {
   this.handlers = [];
@@ -625,17 +625,17 @@ module.exports = InterceptorManager;
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/core/createError.js":
-/*!*********************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/core/createError.js ***!
-  \*********************************************************************************/
+/***/ "./node_modules/axios/lib/core/createError.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/core/createError.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__(/*! ./enhanceError */ "../../../node_modules/axios/lib/core/enhanceError.js");
+var enhanceError = __webpack_require__(/*! ./enhanceError */ "./node_modules/axios/lib/core/enhanceError.js");
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -655,22 +655,22 @@ module.exports = function createError(message, config, code, request, response) 
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/core/dispatchRequest.js":
-/*!*************************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/core/dispatchRequest.js ***!
-  \*************************************************************************************/
+/***/ "./node_modules/axios/lib/core/dispatchRequest.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/core/dispatchRequest.js ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(/*! ./../utils */ "../../../node_modules/axios/lib/utils.js");
-var transformData = __webpack_require__(/*! ./transformData */ "../../../node_modules/axios/lib/core/transformData.js");
-var isCancel = __webpack_require__(/*! ../cancel/isCancel */ "../../../node_modules/axios/lib/cancel/isCancel.js");
-var defaults = __webpack_require__(/*! ../defaults */ "../../../node_modules/axios/lib/defaults.js");
-var isAbsoluteURL = __webpack_require__(/*! ./../helpers/isAbsoluteURL */ "../../../node_modules/axios/lib/helpers/isAbsoluteURL.js");
-var combineURLs = __webpack_require__(/*! ./../helpers/combineURLs */ "../../../node_modules/axios/lib/helpers/combineURLs.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var transformData = __webpack_require__(/*! ./transformData */ "./node_modules/axios/lib/core/transformData.js");
+var isCancel = __webpack_require__(/*! ../cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
+var defaults = __webpack_require__(/*! ../defaults */ "./node_modules/axios/lib/defaults.js");
+var isAbsoluteURL = __webpack_require__(/*! ./../helpers/isAbsoluteURL */ "./node_modules/axios/lib/helpers/isAbsoluteURL.js");
+var combineURLs = __webpack_require__(/*! ./../helpers/combineURLs */ "./node_modules/axios/lib/helpers/combineURLs.js");
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -753,10 +753,10 @@ module.exports = function dispatchRequest(config) {
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/core/enhanceError.js":
-/*!**********************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/core/enhanceError.js ***!
-  \**********************************************************************************/
+/***/ "./node_modules/axios/lib/core/enhanceError.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/axios/lib/core/enhanceError.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -786,17 +786,17 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/core/settle.js":
-/*!****************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/core/settle.js ***!
-  \****************************************************************************/
+/***/ "./node_modules/axios/lib/core/settle.js":
+/*!***********************************************!*\
+  !*** ./node_modules/axios/lib/core/settle.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__(/*! ./createError */ "../../../node_modules/axios/lib/core/createError.js");
+var createError = __webpack_require__(/*! ./createError */ "./node_modules/axios/lib/core/createError.js");
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -824,17 +824,17 @@ module.exports = function settle(resolve, reject, response) {
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/core/transformData.js":
-/*!***********************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/core/transformData.js ***!
-  \***********************************************************************************/
+/***/ "./node_modules/axios/lib/core/transformData.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/core/transformData.js ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(/*! ./../utils */ "../../../node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 /**
  * Transform the data for a request or a response
@@ -856,18 +856,18 @@ module.exports = function transformData(data, headers, fns) {
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/defaults.js":
-/*!*************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/defaults.js ***!
-  \*************************************************************************/
+/***/ "./node_modules/axios/lib/defaults.js":
+/*!********************************************!*\
+  !*** ./node_modules/axios/lib/defaults.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__(/*! ./utils */ "../../../node_modules/axios/lib/utils.js");
-var normalizeHeaderName = __webpack_require__(/*! ./helpers/normalizeHeaderName */ "../../../node_modules/axios/lib/helpers/normalizeHeaderName.js");
+var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
+var normalizeHeaderName = __webpack_require__(/*! ./helpers/normalizeHeaderName */ "./node_modules/axios/lib/helpers/normalizeHeaderName.js");
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -883,10 +883,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(/*! ./adapters/xhr */ "../../../node_modules/axios/lib/adapters/xhr.js");
+    adapter = __webpack_require__(/*! ./adapters/xhr */ "./node_modules/axios/lib/adapters/xhr.js");
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(/*! ./adapters/http */ "../../../node_modules/axios/lib/adapters/xhr.js");
+    adapter = __webpack_require__(/*! ./adapters/http */ "./node_modules/axios/lib/adapters/xhr.js");
   }
   return adapter;
 }
@@ -929,6 +929,10 @@ var defaults = {
     return data;
   }],
 
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
   timeout: 0,
 
   xsrfCookieName: 'XSRF-TOKEN',
@@ -957,14 +961,14 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../HREXT07/Sempai/giftser/node_modules/process/browser.js */ "./node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/helpers/bind.js":
-/*!*****************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/helpers/bind.js ***!
-  \*****************************************************************************/
+/***/ "./node_modules/axios/lib/helpers/bind.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/bind.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -984,10 +988,10 @@ module.exports = function bind(fn, thisArg) {
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/helpers/btoa.js":
-/*!*****************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/helpers/btoa.js ***!
-  \*****************************************************************************/
+/***/ "./node_modules/axios/lib/helpers/btoa.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/btoa.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1032,17 +1036,17 @@ module.exports = btoa;
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/helpers/buildURL.js":
-/*!*********************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/helpers/buildURL.js ***!
-  \*********************************************************************************/
+/***/ "./node_modules/axios/lib/helpers/buildURL.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/buildURL.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(/*! ./../utils */ "../../../node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 function encode(val) {
   return encodeURIComponent(val).
@@ -1083,9 +1087,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
       if (utils.isArray(val)) {
         key = key + '[]';
-      }
-
-      if (!utils.isArray(val)) {
+      } else {
         val = [val];
       }
 
@@ -1112,10 +1114,10 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/helpers/combineURLs.js":
-/*!************************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/helpers/combineURLs.js ***!
-  \************************************************************************************/
+/***/ "./node_modules/axios/lib/helpers/combineURLs.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/combineURLs.js ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1138,17 +1140,17 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/helpers/cookies.js":
-/*!********************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/helpers/cookies.js ***!
-  \********************************************************************************/
+/***/ "./node_modules/axios/lib/helpers/cookies.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/cookies.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(/*! ./../utils */ "../../../node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -1203,10 +1205,10 @@ module.exports = (
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/helpers/isAbsoluteURL.js":
-/*!**************************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
-  \**************************************************************************************/
+/***/ "./node_modules/axios/lib/helpers/isAbsoluteURL.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1229,17 +1231,17 @@ module.exports = function isAbsoluteURL(url) {
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/helpers/isURLSameOrigin.js":
-/*!****************************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
-  \****************************************************************************************/
+/***/ "./node_modules/axios/lib/helpers/isURLSameOrigin.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(/*! ./../utils */ "../../../node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -1309,17 +1311,17 @@ module.exports = (
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/helpers/normalizeHeaderName.js":
-/*!********************************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/helpers/normalizeHeaderName.js ***!
-  \********************************************************************************************/
+/***/ "./node_modules/axios/lib/helpers/normalizeHeaderName.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/normalizeHeaderName.js ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(/*! ../utils */ "../../../node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ../utils */ "./node_modules/axios/lib/utils.js");
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -1333,17 +1335,17 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/helpers/parseHeaders.js":
-/*!*************************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/helpers/parseHeaders.js ***!
-  \*************************************************************************************/
+/***/ "./node_modules/axios/lib/helpers/parseHeaders.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/parseHeaders.js ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(/*! ./../utils */ "../../../node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 // Headers whose duplicates are ignored by node
 // c.f. https://nodejs.org/api/http.html#http_message_headers
@@ -1398,10 +1400,10 @@ module.exports = function parseHeaders(headers) {
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/helpers/spread.js":
-/*!*******************************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/helpers/spread.js ***!
-  \*******************************************************************************/
+/***/ "./node_modules/axios/lib/helpers/spread.js":
+/*!**************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/spread.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1437,18 +1439,18 @@ module.exports = function spread(callback) {
 
 /***/ }),
 
-/***/ "../../../node_modules/axios/lib/utils.js":
-/*!**********************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/axios/lib/utils.js ***!
-  \**********************************************************************/
+/***/ "./node_modules/axios/lib/utils.js":
+/*!*****************************************!*\
+  !*** ./node_modules/axios/lib/utils.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var bind = __webpack_require__(/*! ./helpers/bind */ "../../../node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__(/*! is-buffer */ "../../../node_modules/is-buffer/index.js");
+var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
+var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/is-buffer/index.js");
 
 /*global toString:true*/
 
@@ -1752,38 +1754,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "../../../node_modules/is-buffer/index.js":
-/*!**********************************************************************!*\
-  !*** /Users/rachaelotto/Programming/node_modules/is-buffer/index.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-// The _isBuffer check is for Safari 5-7 support, because it's missing
-// Object.prototype.constructor. Remove this eventually
-module.exports = function (obj) {
-  return obj != null && (isBuffer(obj) || isSlowBuffer(obj) || !!obj._isBuffer)
-}
-
-function isBuffer (obj) {
-  return !!obj.constructor && typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
-
-// For Node v0.10 support. Remove this eventually.
-function isSlowBuffer (obj) {
-  return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/cjs.js!./public/dist/style.css":
 /*!*********************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./public/dist/style.css ***!
@@ -1792,8 +1762,12 @@ function isSlowBuffer (obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Imports
+var urlEscape = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/url-escape.js */ "./node_modules/css-loader/dist/runtime/url-escape.js");
+var ___CSS_LOADER_URL___0___ = urlEscape(__webpack_require__(/*! ./imgs/art-blur-bright.jpg */ "./public/dist/imgs/art-blur-bright.jpg"));
+
 // Module
-exports.push([module.i, "/*\nPalette\n#F7E1D7 CREAM\n#FF87AB PINK\n#565656 GREY\n#AEA4BF LAVENDAR\n#17BEBB TEAL\n\nFONTS\nfont-family: 'Abril Fatface', cursive;\nfont-family: 'Poppins', sans-serif;\n\n\n*/\n\n* {\n    margin: 0;\n    /* background-color: #F7E1D7; */\n    color: #565656;\n    font-family: 'Poppins', sans-serif;\n    font-size: 16px;\n}\n\nnav {\n    display: flex;\n    background-size: cover;\n    justify-content: space-between;\n    background-color: #AEA4BF;\n    color: #565656;\n    border-bottom: 3px #17BEBB solid;\n}\n\nnav h1 {\n    margin-left: 10px;\n    background-color: #AEA4BF;\n    font-family: 'Abril Fatface', cursive;\n    font-size: 64px;\n    \n}\n\nbutton {\n    width: 80px;\n    background-color:#17BEBB;\n    border-radius: 5px;\n    margin-left: 10px;\n}\n\n.btn-add-comment {\n    width: 100px;\n}\n\n.btn-add-gift {\n    width: 100px;\n}\n\n\nbutton:hover {\n    background-color:#FF87AB;\n}\n\nul{\n    list-style: none;\n}\n\n\n\n.app {\n    display: flex;\n}\n\n.btn-close {\n    font-size: 8px;\n    padding: 2px 8px;\n\n}\n\n.current-user {\n    display: flex;\n    justify-content: space-around;\n    background-color: #AEA4BF;\n    align-items: center;\n    padding: 10px;\n}\n\n.content {\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    flex-direction: column;\n    padding-top: 40px;\n    width: 700px;\n}\n\n.content h3 {\n    font-size: 32px;\n    border-bottom: 3px #17BEBB solid;\n    margin-bottom: 20px;\n    padding-bottom: 0px;\n}\n\n.friend {\n    width: 300px;\n    height: 60px;\n    display: flex;\n    background-color: #AEA4BF;\n    justify-content: space-between;\n    align-content: center;\n    border: 2px #565656 solid;\n    border-radius: 3px;\n    padding-right: 30px;\n    padding-left: 30px;\n    margin-bottom: 20px;\n}\n\n\n.friend p {\n    font-size: 16px;\n    background-color: #AEA4BF;\n}\n\n.friend h4 {\n    background-color: #AEA4BF;\n}\n\n.gift-list {\n    padding-bottom: 10px;\n    background-color:#F7E1D7;\n    border: 2px #17BEBB solid;\n    margin: 20px;\n}\n\n.gift-list-title {\n    display: flex;\n    flex-direction: row;\n}\n\n\n", ""]);
+exports.push([module.i, "/*\nPalette\n#F7E1D7 CREAM\n#FF87AB PINK rgba(255, 135, 171, 1)\n#565656 GREY rgba(86, 86, 86, 1)\n#AEA4BF LAVENDAR rgba(174, 164, 191, 1)\n#17BEBB TEAL\n\nFONTS\nfont-family: 'Abril Fatface', cursive;\nfont-family: 'Poppins', sans-serif;\n\n\n*/\n\n* {\n    margin: 0;\n    /* background-color: #F7E1D7; */\n    color: #565656;\n    font-family: 'Poppins', sans-serif;\n    font-size: 16px;\n}\n\nnav {\n    display: flex;\n    height: 400px;\n    /* background-size: cover; */\n    justify-content: center;\n    flex-direction: column;\n    align-items: center;\n    background-color: rgba(86, 86, 86, 0.5);\n    color: #565656;\n    border-bottom: 3px #17BEBB solid;\n    background-image: url(" + ___CSS_LOADER_URL___0___ + ");\n    background-position: center;\n    background-size: cover;\n\n}\n\nnav h1 {\n    margin-left: 10px;\n    color: #17BEBB;\n    /* background-color: #AEA4BF; */\n    font-family: 'Abril Fatface', cursive;\n    font-size: 86px;\n    text-shadow: 1px 2px #565656;\n    \n}\n\nbutton {\n    width: 80px;\n    background-color:#17BEBB;\n    border-radius: 5px;\n    margin-left: 10px;\n}\n\n.app {\n    display: flex;\n}\n\n.btn-add-comment {\n    width: 100px;\n}\n\n.btn-add-gift {\n    width: 200px;\n    margin-top: 10px;\n    margin-left: 30px;\n}\n\n.btn-big-close {\n    height: 55px;\n}\n\n.btn-show-gifts {\n    /* width: 200px; */\n    height: 50px;\n    border-radius: 10px;\n}\n\n.btn-close {\n    width: 10px;\n    height: 20px;\n    padding: 0 12px 0 10px;\n    text-align: center;\n    font-size: 8px;\n    border-radius: 10px;\n}\n\n\nbutton:hover {\n    background-color:#FF87AB;\n}\n\nul{\n    list-style: none;\n}\n\n\n.current-user {\n    display: flex;\n    color: rgba(255, 135, 171, 1);\n    justify-content: space-around;\n    background-color: rgba(86, 86, 86, 0.95);\n    align-items: center;\n    padding: 10px;\n    color: \n}\n\n.content {\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    flex-direction: column;\n    padding-top: 40px;\n    width: 700px;\n    padding-left: 100px;\n}\n\n.content h3 {\n    font-size: 32px;\n    border-bottom: 3px #17BEBB solid;\n    margin-bottom: 20px;\n    padding-bottom: 0px;\n}\n\n.comment-box {\n    border: #17BEBB 2px solid;\n    margin: 2px;\n    margin-top: 0px;\n    margin-right: 18px;\n    padding: 2px 0;\n    padding-top: 0;\n    width: 400px;\n}\n\n.comment-box-user {\n    background-color: #FF87AB;\n}\n\n.comment-box-comment {\n    width: 300px;\n    padding-left: 10px;\n    margin-left: 40px;\n    margin-top: 10px;\n    margin-bottom: 10px;\n    background-color: white;\n}\n\n.comment-end-btns{\n    display: flex;\n}\n\n.comment-list h5{\n    font-size: 24px;\n\n}\n\n\n\n.friend {\n    width: 400px;\n    height: 100px;\n    display: flex;\n    /* background-color: #AEA4BF; */\n    justify-content: space-between;\n    align-content: center;\n    border: 2px #565656 solid;\n    border-radius: 3px;\n    padding-right: 30px;\n    padding-left: 30px;\n    margin-bottom: 20px;\n}\n\n.friend-header{\n    display: flex;\n}\n\n\n.friend-header img {\n    height: 60px;\n    margin: 10px;\n    border-radius:30px;\n}\n\n.friend-title {\n    display: flex;\n    flex-direction: column;\n}\n\n.friend-title h4 {\n    font-size: 24px;\n}\n\n\n.friend-title p {\n    font-size: 6px;\n}\n\n\n.friend p {\n    font-size: 16px;\n    /* background-color: #AEA4BF; */\n}\n\n.friend h4 {\n    /* background-color: #AEA4BF; */\n}\n\n.gift-list {\n    padding-bottom: 10px;\n    background-color:#F7E1D7;\n    border: 2px #17BEBB solid;\n    margin: 20px;\n}\n\n.gift-list-title {\n    display: flex;\n    flex-direction: row;\n    \n}\n\n.gift-list-title h5{\n    font-size: 24px;\n    margin: 10px;\n    padding-left:10px;\n}\n\n\nfooter {\n    background-color: #17BEBB;\n    height: 50px;\n}", ""]);
 
 
 
@@ -1892,6 +1866,69 @@ function toComment(sourceMap) {
   var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
   return '/*# ' + data + ' */';
 }
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/url-escape.js":
+/*!************************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/url-escape.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function escape(url, needQuotes) {
+  if (typeof url !== 'string') {
+    return url;
+  } // If url is already wrapped in quotes, remove them
+
+
+  if (/^['"].*['"]$/.test(url)) {
+    url = url.slice(1, -1);
+  } // Should url be wrapped?
+  // See https://drafts.csswg.org/css-values-3/#urls
+
+
+  if (/["'() \t\n]/.test(url) || needQuotes) {
+    return '"' + url.replace(/"/g, '\\"').replace(/\n/g, '\\n') + '"';
+  }
+
+  return url;
+};
+
+/***/ }),
+
+/***/ "./node_modules/is-buffer/index.js":
+/*!*****************************************!*\
+  !*** ./node_modules/is-buffer/index.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+// The _isBuffer check is for Safari 5-7 support, because it's missing
+// Object.prototype.constructor. Remove this eventually
+module.exports = function (obj) {
+  return obj != null && (isBuffer(obj) || isSlowBuffer(obj) || !!obj._isBuffer)
+}
+
+function isBuffer (obj) {
+  return !!obj.constructor && typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
+
+// For Node v0.10 support. Remove this eventually.
+function isSlowBuffer (obj) {
+  return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
+}
+
 
 /***/ }),
 
@@ -44986,6 +45023,17 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./public/dist/imgs/art-blur-bright.jpg":
+/*!**********************************************!*\
+  !*** ./public/dist/imgs/art-blur-bright.jpg ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "4e746bff474cdf9b21c3d29f98bccffb.jpg";
+
+/***/ }),
+
 /***/ "./public/dist/style.css":
 /*!*******************************!*\
   !*** ./public/dist/style.css ***!
@@ -45087,7 +45135,7 @@ var App = function (_React$Component) {
                     _react2.default.createElement(
                         "h1",
                         null,
-                        "Gifter"
+                        "Giftser"
                     ),
                     _react2.default.createElement(
                         "div",
@@ -45176,6 +45224,8 @@ var Comments = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var parsedTimestamp = new Date(this.props.comment.timestamp * 1000);
+      parsedTimestamp = parsedTimestamp.toLocaleString();
       return _react2.default.createElement(
         "div",
         { className: "comment-box" },
@@ -45183,23 +45233,19 @@ var Comments = function (_React$Component) {
           "div",
           { className: "comment-box-user" },
           this.props.comment.name,
-          " - ",
-          this.props.comment.timestamp
+          " -",
+          " ",
+          _react2.default.createElement(
+            _reactMoment2.default,
+            { fromNow: true, ago: true },
+            parsedTimestamp
+          ),
+          " ago"
         ),
         _react2.default.createElement(
           "div",
-          {
-            className: "comment-box-comment"
-          },
+          { className: "comment-box-comment" },
           this.props.comment.comment
-        ),
-        _react2.default.createElement(
-          "button",
-          {
-            onClick: this.updateComment,
-            id: this.props.comment.comment_id
-          },
-          "Update"
         )
       );
     }
@@ -45236,7 +45282,7 @@ var _Gift = __webpack_require__(/*! ./Gift.jsx */ "./public/src/components/Gift.
 
 var _Gift2 = _interopRequireDefault(_Gift);
 
-var _axios = __webpack_require__(/*! axios */ "../../../node_modules/axios/index.js");
+var _axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -45314,10 +45360,16 @@ var Friend = function (_React$Component) {
     }, {
         key: "showGiftBox",
         value: function showGiftBox(e) {
-            this.setState({
-                showGiftBox: true,
-                uIdForNewGift: e.target.id
-            });
+            if (this.state.showGiftBox) {
+                this.setState({
+                    showGiftBox: false
+                });
+            } else {
+                this.setState({
+                    showGiftBox: true,
+                    uIdForNewGift: e.target.id
+                });
+            }
         }
     }, {
         key: "handleInput",
@@ -45357,19 +45409,33 @@ var Friend = function (_React$Component) {
                         // onClick = {this.getData}
                     },
                     _react2.default.createElement(
-                        "h4",
-                        null,
-                        this.props.friend.name
+                        "div",
+                        { className: "friend-header" },
+                        _react2.default.createElement("img", { src: this.props.friend.url }),
+                        _react2.default.createElement(
+                            "div",
+                            { className: "friend-title" },
+                            _react2.default.createElement(
+                                "h4",
+                                null,
+                                this.props.friend.name
+                            ),
+                            _react2.default.createElement(
+                                "p",
+                                null,
+                                "Gifts: ",
+                                this.props.friend.gift_count
+                            )
+                        )
                     ),
                     _react2.default.createElement(
                         "button",
                         {
+                            className: "btn-show-gifts",
                             id: this.props.friend.user_id,
                             onClick: this.getData
                         },
-                        "Show ",
-                        this.props.friend.gift_count,
-                        " Gifts"
+                        "Show Gifts"
                     )
                 );
             } else if (!showGiftBox) {
@@ -45382,11 +45448,15 @@ var Friend = function (_React$Component) {
                         _react2.default.createElement(
                             "h5",
                             null,
-                            "Gift Ideas"
+                            "Gift Ideas for ",
+                            this.props.friend.name
                         ),
                         _react2.default.createElement(
                             "button",
-                            { className: "btn-close", onClick: this.hideGifts },
+                            {
+                                className: "btn-close",
+                                onClick: this.hideGifts
+                            },
                             "x"
                         )
                     ),
@@ -45399,7 +45469,11 @@ var Friend = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         "button",
-                        { id: this.props.friend.user_id, className: "btn-add-gift", onClick: this.showGiftBox },
+                        {
+                            id: this.props.friend.user_id,
+                            className: "btn-add-gift",
+                            onClick: this.showGiftBox
+                        },
                         "Add a gift idea"
                     )
                 );
@@ -45413,7 +45487,8 @@ var Friend = function (_React$Component) {
                         _react2.default.createElement(
                             "h5",
                             null,
-                            "Gift Ideas"
+                            "Gift Ideas for ",
+                            this.props.friend.name
                         ),
                         _react2.default.createElement(
                             "button",
@@ -45425,7 +45500,10 @@ var Friend = function (_React$Component) {
                         "ul",
                         null,
                         this.state.gifts.map(function (el) {
-                            return _react2.default.createElement(_Gift2.default, { key: el.gift_id, gift: el });
+                            return _react2.default.createElement(_Gift2.default, {
+                                key: el.gift_id,
+                                gift: el
+                            });
                         })
                     ),
                     _react2.default.createElement(
@@ -45435,6 +45513,12 @@ var Friend = function (_React$Component) {
                             "label",
                             { htmlFor: "newGiftName" },
                             "New gift idea: "
+                        ),
+                        " ",
+                        _react2.default.createElement(
+                            "button",
+                            { className: "btn-close-gift-box", onClick: this.showGiftBox },
+                            "x"
                         ),
                         _react2.default.createElement("br", null),
                         _react2.default.createElement("input", {
@@ -45527,7 +45611,7 @@ var _Friend = __webpack_require__(/*! ./Friend.jsx */ "./public/src/components/F
 
 var _Friend2 = _interopRequireDefault(_Friend);
 
-var _axios = __webpack_require__(/*! axios */ "../../../node_modules/axios/index.js");
+var _axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -45619,7 +45703,7 @@ var _Comments = __webpack_require__(/*! ./Comments.jsx */ "./public/src/componen
 
 var _Comments2 = _interopRequireDefault(_Comments);
 
-var _axios = __webpack_require__(/*! axios */ "../../../node_modules/axios/index.js");
+var _axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -45734,7 +45818,7 @@ var Gift = function (_React$Component) {
             if (showComments && !showCommentBox) {
                 return _react2.default.createElement(
                     "div",
-                    null,
+                    { className: "comment-list" },
                     _react2.default.createElement(
                         "h5",
                         null,
@@ -45742,7 +45826,7 @@ var Gift = function (_React$Component) {
                         " ",
                         _react2.default.createElement(
                             "button",
-                            { onClick: this.toggleComments },
+                            { className: "btn-close", onClick: this.toggleComments },
                             "x"
                         )
                     ),
@@ -45750,9 +45834,19 @@ var Gift = function (_React$Component) {
                         return _react2.default.createElement(_Comments2.default, { key: el.comment_id, comment: el });
                     }),
                     _react2.default.createElement(
-                        "button",
-                        { id: this.props.gift.gift_id, className: "btn-add-comment", onClick: this.openCommentBox },
-                        "Add Comment"
+                        "div",
+                        { className: "comment-end-btns" },
+                        _react2.default.createElement(
+                            "button",
+                            { id: this.props.gift.gift_id, className: "btn-add-comment", onClick: this.openCommentBox },
+                            "Add Comment"
+                        ),
+                        "  ",
+                        _react2.default.createElement(
+                            "button",
+                            { className: "btn-big-close", onClick: this.toggleComments },
+                            "Close"
+                        )
                     )
                 );
             } else if (showCommentBox && showComments) {

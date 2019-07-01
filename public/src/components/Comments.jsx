@@ -26,22 +26,26 @@ class Comments extends React.Component {
     }
 
     render() {
+      let parsedTimestamp = new Date(this.props.comment.timestamp * 1000);
+      parsedTimestamp = parsedTimestamp.toLocaleString();
         return (
           <div className="comment-box">
             <div className="comment-box-user">
-              {this.props.comment.name} - {this.props.comment.timestamp}
+              {this.props.comment.name} -{" "}
+              <Moment fromNow ago>
+                {parsedTimestamp}
+              </Moment> ago
+           
             </div>
-            <div
-              className="comment-box-comment"
-            >
+            <div className="comment-box-comment">
               {this.props.comment.comment}
             </div>
-            <button
+            {/* <button
               onClick={this.updateComment}
               id={this.props.comment.comment_id}
             >
               Update
-            </button>
+            </button> */}
           </div>
         );
     }

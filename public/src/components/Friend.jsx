@@ -54,10 +54,19 @@ class Friend extends React.Component {
     }
 
     showGiftBox(e) {
-        this.setState({
-            showGiftBox: true,
-            uIdForNewGift: e.target.id
-        })
+        if (this.state.showGiftBox) {
+            this.setState({
+                showGiftBox:false
+            })
+
+        } else {
+            this.setState({
+                showGiftBox: true,
+                uIdForNewGift: e.target.id
+            })
+
+        }
+        
 
     }
 
@@ -95,12 +104,20 @@ class Friend extends React.Component {
                 // onClick={this.handleClick}
                 // onClick = {this.getData}
               >
-                <h4>{this.props.friend.name}</h4>
+                <div className="friend-header">
+                    <img src={ this.props.friend.url }></img>
+                    <div className="friend-title">
+                  <h4>{this.props.friend.name}</h4>
+                  <p>Gifts: {this.props.friend.gift_count}</p>
+                        </div>
+                </div>
+
                 <button
+                  className="btn-show-gifts"
                   id={this.props.friend.user_id}
                   onClick={this.getData}
                 >
-                  Show {this.props.friend.gift_count} Gifts
+                  Show Gifts
                 </button>
                 {/* <p>{this.props.friend.gift_count}</p> */}
               </div>
@@ -108,35 +125,53 @@ class Friend extends React.Component {
 
         } else if (!showGiftBox) {
             return (
-                <div className="gift-list">
-                    <div className="gift-list-title">
-                        <h5>Gift Ideas</h5>
-                        <button className="btn-close" onClick={this.hideGifts}>x</button>
-                    </div>
-                    <ul>
-                        {this.state.gifts.map((el) => {
-                            return <Gift key={el.gift_id} gift={el} />
-                        })}
-
-                    </ul>
-                    <button id={this.props.friend.user_id}className="btn-add-gift" onClick={this.showGiftBox}>Add a gift idea</button>
+              <div className="gift-list">
+                <div className="gift-list-title">
+                  <h5>Gift Ideas for {this.props.friend.name}</h5>
+                  <button
+                    className="btn-close"
+                    onClick={this.hideGifts}
+                  >
+                    x
+                  </button>
                 </div>
-            )
+                <ul>
+                  {this.state.gifts.map(el => {
+                    return <Gift key={el.gift_id} gift={el} />;
+                  })}
+                </ul>
+                <button
+                  id={this.props.friend.user_id}
+                  className="btn-add-gift"
+                  onClick={this.showGiftBox}
+                >
+                  Add a gift idea
+                </button>
+              </div>
+            );
         } else if (showGiftBox) {
             return (
                 <div className="gift-list">
                     <div className="gift-list-title">
-                        <h5>Gift Ideas</h5>
+                        <h5>Gift Ideas for {this.props.friend.name}</h5>
                         <button className="btn-close" onClick={this.hideGifts}>x</button>
                     </div>
                     <ul>
                         {this.state.gifts.map((el) => {
-                            return <Gift key={el.gift_id} gift={el} />
+                            return (
+                              <Gift
+                                key={el.gift_id}
+                                gift={el}
+                              />
+                            );
                         })}
 
                     </ul>
+                    {/* <button className="btn-close-gift-box" onClick={this.showGiftBox}>x</button> */}
                     <form onSubmit={this.addGift}>
-                        <label htmlFor="newGiftName">New gift idea: </label><br />
+
+                        <label htmlFor="newGiftName">New gift idea: </label> <button className="btn-close-gift-box" onClick={this.showGiftBox}>x</button>
+                        <br />
                         <input
                             type="text"
                             id="newGiftName"

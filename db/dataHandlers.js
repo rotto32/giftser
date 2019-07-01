@@ -17,7 +17,7 @@ function getFriendList (user_id, cb) {
 
 function getFriendDataFromList (list, cb) {
     let listString = list.join(', ');  
-     client.query(`SELECT user_id, name, gift_count, gifts FROM users WHERE user_id IN (
+     client.query(`SELECT user_id, name, gift_count, gifts, url FROM users WHERE user_id IN (
          ${listString}
          );`)
         .then((data) => {cb(data)})

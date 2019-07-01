@@ -1,9 +1,9 @@
 /*
 Palette
 #F7E1D7 CREAM
-#FF87AB PINK
-#565656 GREY
-#AEA4BF LAVENDAR
+#FF87AB PINK rgba(255, 135, 171, 1)
+#565656 GREY rgba(86, 86, 86, 1)
+#AEA4BF LAVENDAR rgba(174, 164, 191, 1)
 #17BEBB TEAL
 
 FONTS
@@ -23,18 +23,27 @@ font-family: 'Poppins', sans-serif;
 
 nav {
     display: flex;
-    background-size: cover;
-    justify-content: space-between;
-    background-color: #AEA4BF;
+    height: 400px;
+    /* background-size: cover; */
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(86, 86, 86, 0.5);
     color: #565656;
     border-bottom: 3px #17BEBB solid;
+    background-image: url(./imgs/art-blur-bright.jpg);
+    background-position: center;
+    background-size: cover;
+
 }
 
 nav h1 {
     margin-left: 10px;
-    background-color: #AEA4BF;
+    color: #17BEBB;
+    /* background-color: #AEA4BF; */
     font-family: 'Abril Fatface', cursive;
-    font-size: 64px;
+    font-size: 86px;
+    text-shadow: 1px 2px #565656;
     
 }
 
@@ -45,12 +54,37 @@ button {
     margin-left: 10px;
 }
 
+.app {
+    display: flex;
+}
+
 .btn-add-comment {
     width: 100px;
 }
 
 .btn-add-gift {
-    width: 100px;
+    width: 200px;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
+.btn-big-close {
+    height: 55px;
+}
+
+.btn-show-gifts {
+    /* width: 200px; */
+    height: 50px;
+    border-radius: 10px;
+}
+
+.btn-close {
+    width: 10px;
+    height: 20px;
+    padding: 0 12px 0 10px;
+    text-align: center;
+    font-size: 8px;
+    border-radius: 10px;
 }
 
 
@@ -63,23 +97,14 @@ ul{
 }
 
 
-
-.app {
-    display: flex;
-}
-
-.btn-close {
-    font-size: 8px;
-    padding: 2px 8px;
-
-}
-
 .current-user {
     display: flex;
+    color: rgba(255, 135, 171, 1);
     justify-content: space-around;
-    background-color: #AEA4BF;
+    background-color: rgba(86, 86, 86, 0.95);
     align-items: center;
     padding: 10px;
+    color: 
 }
 
 .content {
@@ -89,6 +114,7 @@ ul{
     flex-direction: column;
     padding-top: 40px;
     width: 700px;
+    padding-left: 100px;
 }
 
 .content h3 {
@@ -98,11 +124,45 @@ ul{
     padding-bottom: 0px;
 }
 
-.friend {
+.comment-box {
+    border: #17BEBB 2px solid;
+    margin: 2px;
+    margin-top: 0px;
+    margin-right: 18px;
+    padding: 2px 0;
+    padding-top: 0;
+    width: 400px;
+}
+
+.comment-box-user {
+    background-color: #FF87AB;
+}
+
+.comment-box-comment {
     width: 300px;
-    height: 60px;
+    padding-left: 10px;
+    margin-left: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+.comment-end-btns{
     display: flex;
-    background-color: #AEA4BF;
+}
+
+.comment-list h5{
+    font-size: 24px;
+
+}
+
+
+
+.friend {
+    width: 400px;
+    height: 100px;
+    display: flex;
+    /* background-color: #AEA4BF; */
     justify-content: space-between;
     align-content: center;
     border: 2px #565656 solid;
@@ -112,14 +172,39 @@ ul{
     margin-bottom: 20px;
 }
 
+.friend-header{
+    display: flex;
+}
+
+
+.friend-header img {
+    height: 60px;
+    margin: 10px;
+    border-radius:30px;
+}
+
+.friend-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.friend-title h4 {
+    font-size: 24px;
+}
+
+
+.friend-title p {
+    font-size: 6px;
+}
+
 
 .friend p {
     font-size: 16px;
-    background-color: #AEA4BF;
+    /* background-color: #AEA4BF; */
 }
 
 .friend h4 {
-    background-color: #AEA4BF;
+    /* background-color: #AEA4BF; */
 }
 
 .gift-list {
@@ -132,6 +217,17 @@ ul{
 .gift-list-title {
     display: flex;
     flex-direction: row;
+    
+}
+
+.gift-list-title h5{
+    font-size: 24px;
+    margin: 10px;
+    padding-left:10px;
 }
 
 
+footer {
+    background-color: #17BEBB;
+    height: 50px;
+}
