@@ -44,16 +44,16 @@ function addGift (user_id, newGift, cb) {
     //updates the gift count in users
     //UPDATE users SET gift_count = (SELECT gift_count FROM users WHERE user_id = 1)+1 where user_id=1;
     //updates the gift array in users
-    //UPDATE users SET gifts[6] = 44 where user_id=1;
+    //UPDATE users SET gifts[6] = 44 where user_id=1; 
     
     //currently broken at the second then statement, need to fix
     client.query(`INSERT INTO gifts (gift_id, gift_name, type, purchased, archived) VALUES ((SELECT MAX(gift_id) FROM gifts)+1, '${newGift.gift_name}', '${newGift.type}', false, false);`)
-        .then((user_id, newGift, cb)=>{
+        .then(()=>{
             return client
               .query(
                 `UPDATE users SET gift_count = (SELECT gift_count FROM users WHERE user_id = ${user_id})+1 where user_id=${user_id};`
               )
-              .then((user_id, newGift, cb) => {
+              .then(() => {
                   return client.query(
                     `UPDATE users SET gifts[(SELECT gift_count FROM users WHERE user_id=${user_id})] = (SELECT MAX(gift_id) FROM gifts) where user_id=${user_id};`
                   )
