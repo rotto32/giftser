@@ -1,18 +1,19 @@
-import React from "react";
-import Gift from "./Gift.jsx";
-import axios from "axios";
+import axios from 'axios';
+import React from 'react';
+import Gift from './Gift.jsx';
+
 
 class Friend extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      friendId: "",
-      friendName: "",
+      friendId: '',
+      friendName: '',
       gifts: [],
       showGiftBox: false,
-      uIdForNewGift: "",
-      newGiftName: "",
-      newGiftType: "",
+      uIdForNewGift: '',
+      newGiftName: '',
+      newGiftType: '',
 
 
     };
@@ -49,7 +50,7 @@ class Friend extends React.Component {
 
   hideGifts() {
     this.setState({
-      gifts: []
+      gifts: [],
     });
   }
 
@@ -87,7 +88,7 @@ class Friend extends React.Component {
       .catch((e)=>{console.log(e);});
   }
 
-  render () {
+  render() {
     let friendState = this.state.gifts;
     let showGiftBox = this.state.showGiftBox;
 
@@ -102,9 +103,9 @@ class Friend extends React.Component {
           <div className="friend-header">
             <img src={ this.props.friend.url }></img>
             <div className="friend-title">
-                <h4>{this.props.friend.name}</h4>
-                <p>Gifts: {this.props.friend.gift_count}</p>
-              </div>
+              <h4>{this.props.friend.name}</h4>
+              <p>Gifts: {this.props.friend.gift_count}</p>
+            </div>
           </div>
 
           <button
@@ -122,75 +123,93 @@ class Friend extends React.Component {
     if (!showGiftBox) {
       return (
         <div className="gift-list">
-                <div className="gift-list-title">
-                  <h5>Gift Ideas for {this.props.friend.name}</h5>
-                  <button
-                    className="btn-close"
-                    onClick={this.hideGifts}
-                  >
-                    x
-                  </button>
-                </div>
-                <ul>
-                  {this.state.gifts.map(el => {
-                    return <Gift key={el.gift_id} gift={el} />;
-                  })}
-                </ul>
-                <button
-                  id={this.props.friend.user_id}
-                  className="btn-add-gift"
-                  onClick={this.showGiftBox}
-                >
-                  Add a gift idea
-                </button>
-              </div>
+          <div className="gift-list-title">
+            <h5>
+              Gift Ideas for {this.props.friend.name}
+            </h5>
+            <button
+              type="button"
+              className="btn-close"
+              onClick={this.hideGifts}
+            >
+              x
+            </button>
+          </div>
+          <ul>
+            {this.state.gifts.map((el) => {
+              return <Gift key={el.gift_id} gift={el} />;
+            })}
+          </ul>
+          <button
+            type="button"
+            id={this.props.friend.user_id}
+            className="btn-add-gift"
+            onClick={this.showGiftBox}
+          >
+            Add a gift idea
+          </button>
+        </div>
       );
-    } else if (showGiftBox) {
+    }
+    if (showGiftBox) {
       return (
         <div className="gift-list">
-                  <div className="gift-list-title">
-                      <h5>Gift Ideas for {this.props.friend.name}</h5>
-                      <button className="btn-close" onClick={this.hideGifts}>x</button>
-                    </div>
-                  <ul>
-                      {this.state.gifts.map((el) => {
-                        return (
-                            <Gift
-                                key={el.gift_id}
-                                gift={el}
-                              />
-                        );
-                      })}
+          <div className="gift-list-title">
+            <h5>
+              Gift Ideas for {this.props.friend.name}
+            </h5>
+            <button
+              type="button"
+              className="btn-close"
+              onClick={this.hideGifts}
+            >
+            x
+            </button>
+          </div>
+          <ul>
+            {this.state.gifts.map(el => (
+              <Gift
+                key={el.gift_id}
+                gift={el}
+              />
+            ))}
+          </ul>
+          {/* <button className="btn-close-gift-box" onClick={this.showGiftBox}>x</button> */}
+          <form onSubmit={this.addGift}>
+            <label htmlFor="newGiftName">New gift idea: </label>
+            <button
+              type="button"
+              className="btn-close-gift-box"
+              onClick={this.showGiftBox}
+            >
+            x
+            </button>
+            <br />
+            <input
+              type="text"
+              id="newGiftName"
+              value={this.state.newGiftName}
+              onChange={this.handleInput}
+              required
+            />
+            <br />
 
-                    </ul>
-                  {/* <button className="btn-close-gift-box" onClick={this.showGiftBox}>x</button> */}
-                  <form onSubmit={this.addGift}>
-
-                      <label htmlFor="newGiftName">New gift idea: </label> <button className="btn-close-gift-box" onClick={this.showGiftBox}>x</button>
-                      <br />
-                      <input
-                          type="text"
-                          id="newGiftName"
-                          value={this.state.newGiftName}
-                          onChange={this.handleInput}
-                          required
-                        /> <br />
-
-                      <select id="newGiftType" onChange={this.handleInput}>
-                          <option value="">--Please choose an event--</option>
-                          <option value="birthday">Birthday</option>
-                          <option value="anniversary">Anniversary</option>
-                          <option value="valentines">Valentines</option>
-                          <option value="christmas">Christmas</option>
-                          <option value="just because">Just Because</option>
-                          <option value="other">Other</option>
-                        </select>
-                      <button>Submit</button>
-
-
-                    </form>
-                </div>
-
+            <select id="newGiftType" onChange={this.handleInput}>
+              <option value="">--Please choose an event--</option>
+              <option value="birthday">Birthday</option>
+              <option value="anniversary">Anniversary</option>
+              <option value="valentines">Valentines</option>
+              <option value="christmas">Christmas</option>
+              <option value="just because">Just Because</option>
+              <option value="other">Other</option>
+            </select>
+            <button
+              type="submit"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
       );
     }
   }

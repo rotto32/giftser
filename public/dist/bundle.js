@@ -45274,6 +45274,10 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+var _axios2 = _interopRequireDefault(_axios);
+
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
@@ -45281,10 +45285,6 @@ var _react2 = _interopRequireDefault(_react);
 var _Gift = __webpack_require__(/*! ./Gift.jsx */ "./public/src/components/Gift.jsx");
 
 var _Gift2 = _interopRequireDefault(_Gift);
-
-var _axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-
-var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45305,13 +45305,13 @@ var Friend = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Friend.__proto__ || Object.getPrototypeOf(Friend)).call(this, props));
 
     _this.state = {
-      friendId: "",
-      friendName: "",
+      friendId: '',
+      friendName: '',
       gifts: [],
       showGiftBox: false,
-      uIdForNewGift: "",
-      newGiftName: "",
-      newGiftType: ""
+      uIdForNewGift: '',
+      newGiftName: '',
+      newGiftType: ''
 
     };
     _this.handleClick = _this.handleClick.bind(_this);
@@ -45330,11 +45330,11 @@ var Friend = function (_React$Component) {
   // })
 
   _createClass(Friend, [{
-    key: "getData",
+    key: 'getData',
     value: function getData(event) {
       var _this2 = this;
 
-      _axios2.default.get("/api/gifts/" + event.target.id).then(function (data) {
+      _axios2.default.get('/api/gifts/' + event.target.id).then(function (data) {
         _this2.setState({
           gifts: data.data
         });
@@ -45343,7 +45343,7 @@ var Friend = function (_React$Component) {
       });
     }
   }, {
-    key: "handleClick",
+    key: 'handleClick',
     value: function handleClick(e) {
       this.setState({
         friendId: e.target.id,
@@ -45351,14 +45351,14 @@ var Friend = function (_React$Component) {
       });
     }
   }, {
-    key: "hideGifts",
+    key: 'hideGifts',
     value: function hideGifts() {
       this.setState({
         gifts: []
       });
     }
   }, {
-    key: "showGiftBox",
+    key: 'showGiftBox',
     value: function showGiftBox(e) {
       if (this.state.showGiftBox) {
         this.setState({
@@ -45372,18 +45372,18 @@ var Friend = function (_React$Component) {
       }
     }
   }, {
-    key: "handleInput",
+    key: 'handleInput',
     value: function handleInput(e) {
       this.setState(_defineProperty({}, e.target.id, e.target.value));
     }
   }, {
-    key: "addGift",
+    key: 'addGift',
     value: function addGift(e) {
       e.preventDefault();
       this.setState({
         showGiftBox: false
       });
-      _axios2.default.post("/api/gifts/" + this.state.uIdForNewGift, {
+      _axios2.default.post('/api/gifts/' + this.state.uIdForNewGift, {
         gift_name: this.state.newGiftName,
         user_id: this.state.uIdForNewGift,
         type: this.state.newGiftType
@@ -45394,112 +45394,119 @@ var Friend = function (_React$Component) {
       });
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       var friendState = this.state.gifts;
       var showGiftBox = this.state.showGiftBox;
 
       if (friendState.length === 0) {
         return _react2.default.createElement(
-          "div",
+          'div',
           {
             // id={this.props.friend.user_id}
-            className: "friend"
+            className: 'friend'
             // onClick={this.handleClick}
             // onClick = {this.getData}
           },
           _react2.default.createElement(
-            "div",
-            { className: "friend-header" },
-            _react2.default.createElement("img", { src: this.props.friend.url }),
+            'div',
+            { className: 'friend-header' },
+            _react2.default.createElement('img', { src: this.props.friend.url }),
             _react2.default.createElement(
-              "div",
-              { className: "friend-title" },
+              'div',
+              { className: 'friend-title' },
               _react2.default.createElement(
-                "h4",
+                'h4',
                 null,
                 this.props.friend.name
               ),
               _react2.default.createElement(
-                "p",
+                'p',
                 null,
-                "Gifts: ",
+                'Gifts: ',
                 this.props.friend.gift_count
               )
             )
           ),
           _react2.default.createElement(
-            "button",
+            'button',
             {
-              type: "button",
-              className: "btn-show-gifts",
+              type: 'button',
+              className: 'btn-show-gifts',
               id: this.props.friend.user_id,
               onClick: this.getData
             },
-            "Show Gifts"
+            'Show Gifts'
           )
         );
       }
       if (!showGiftBox) {
         return _react2.default.createElement(
-          "div",
-          { className: "gift-list" },
+          'div',
+          { className: 'gift-list' },
           _react2.default.createElement(
-            "div",
-            { className: "gift-list-title" },
+            'div',
+            { className: 'gift-list-title' },
             _react2.default.createElement(
-              "h5",
+              'h5',
               null,
-              "Gift Ideas for ",
+              'Gift Ideas for ',
               this.props.friend.name
             ),
             _react2.default.createElement(
-              "button",
+              'button',
               {
-                className: "btn-close",
+                type: 'button',
+                className: 'btn-close',
                 onClick: this.hideGifts
               },
-              "x"
+              'x'
             )
           ),
           _react2.default.createElement(
-            "ul",
+            'ul',
             null,
             this.state.gifts.map(function (el) {
               return _react2.default.createElement(_Gift2.default, { key: el.gift_id, gift: el });
             })
           ),
           _react2.default.createElement(
-            "button",
+            'button',
             {
+              type: 'button',
               id: this.props.friend.user_id,
-              className: "btn-add-gift",
+              className: 'btn-add-gift',
               onClick: this.showGiftBox
             },
-            "Add a gift idea"
+            'Add a gift idea'
           )
         );
-      } else if (showGiftBox) {
+      }
+      if (showGiftBox) {
         return _react2.default.createElement(
-          "div",
-          { className: "gift-list" },
+          'div',
+          { className: 'gift-list' },
           _react2.default.createElement(
-            "div",
-            { className: "gift-list-title" },
+            'div',
+            { className: 'gift-list-title' },
             _react2.default.createElement(
-              "h5",
+              'h5',
               null,
-              "Gift Ideas for ",
+              'Gift Ideas for ',
               this.props.friend.name
             ),
             _react2.default.createElement(
-              "button",
-              { className: "btn-close", onClick: this.hideGifts },
-              "x"
+              'button',
+              {
+                type: 'button',
+                className: 'btn-close',
+                onClick: this.hideGifts
+              },
+              'x'
             )
           ),
           _react2.default.createElement(
-            "ul",
+            'ul',
             null,
             this.state.gifts.map(function (el) {
               return _react2.default.createElement(_Gift2.default, {
@@ -45509,72 +45516,76 @@ var Friend = function (_React$Component) {
             })
           ),
           _react2.default.createElement(
-            "form",
+            'form',
             { onSubmit: this.addGift },
             _react2.default.createElement(
-              "label",
-              { htmlFor: "newGiftName" },
-              "New gift idea: "
+              'label',
+              { htmlFor: 'newGiftName' },
+              'New gift idea: '
             ),
-            " ",
             _react2.default.createElement(
-              "button",
-              { className: "btn-close-gift-box", onClick: this.showGiftBox },
-              "x"
+              'button',
+              {
+                type: 'button',
+                className: 'btn-close-gift-box',
+                onClick: this.showGiftBox
+              },
+              'x'
             ),
-            _react2.default.createElement("br", null),
-            _react2.default.createElement("input", {
-              type: "text",
-              id: "newGiftName",
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('input', {
+              type: 'text',
+              id: 'newGiftName',
               value: this.state.newGiftName,
               onChange: this.handleInput,
               required: true
             }),
-            " ",
-            _react2.default.createElement("br", null),
+            _react2.default.createElement('br', null),
             _react2.default.createElement(
-              "select",
-              { id: "newGiftType", onChange: this.handleInput },
+              'select',
+              { id: 'newGiftType', onChange: this.handleInput },
               _react2.default.createElement(
-                "option",
-                { value: "" },
-                "--Please choose an event--"
+                'option',
+                { value: '' },
+                '--Please choose an event--'
               ),
               _react2.default.createElement(
-                "option",
-                { value: "birthday" },
-                "Birthday"
+                'option',
+                { value: 'birthday' },
+                'Birthday'
               ),
               _react2.default.createElement(
-                "option",
-                { value: "anniversary" },
-                "Anniversary"
+                'option',
+                { value: 'anniversary' },
+                'Anniversary'
               ),
               _react2.default.createElement(
-                "option",
-                { value: "valentines" },
-                "Valentines"
+                'option',
+                { value: 'valentines' },
+                'Valentines'
               ),
               _react2.default.createElement(
-                "option",
-                { value: "christmas" },
-                "Christmas"
+                'option',
+                { value: 'christmas' },
+                'Christmas'
               ),
               _react2.default.createElement(
-                "option",
-                { value: "just because" },
-                "Just Because"
+                'option',
+                { value: 'just because' },
+                'Just Because'
               ),
               _react2.default.createElement(
-                "option",
-                { value: "other" },
-                "Other"
+                'option',
+                { value: 'other' },
+                'Other'
               )
             ),
             _react2.default.createElement(
-              "button",
-              null,
-              "Submit"
+              'button',
+              {
+                type: 'submit'
+              },
+              'Submit'
             )
           )
         );
