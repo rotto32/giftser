@@ -45317,6 +45317,7 @@ var Friend = function (_React$Component) {
     _this.showGiftBox = _this.showGiftBox.bind(_this);
     _this.handleInput = _this.handleInput.bind(_this);
     _this.addGift = _this.addGift.bind(_this);
+    _this.getDataAfterPost = _this.getDataAfterPost.bind(_this);
     return _this;
   }
 
@@ -45333,6 +45334,19 @@ var Friend = function (_React$Component) {
 
       _axios2.default.get('/api/gifts/' + event.target.id).then(function (data) {
         _this2.setState({
+          gifts: data.data
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
+    }
+  }, {
+    key: 'getDataAfterPost',
+    value: function getDataAfterPost(id) {
+      var _this3 = this;
+
+      _axios2.default.get('/api/gifts/' + id).then(function (data) {
+        _this3.setState({
           gifts: data.data
         });
       }).catch(function (err) {
@@ -45376,6 +45390,8 @@ var Friend = function (_React$Component) {
   }, {
     key: 'addGift',
     value: function addGift(event) {
+      var _this4 = this;
+
       event.preventDefault();
       this.setState({
         showGiftBox: false
@@ -45384,8 +45400,8 @@ var Friend = function (_React$Component) {
         gift_name: this.state.newGiftName,
         user_id: this.state.uIdForNewGift,
         type: this.state.newGiftType
-      }).then(function (stuff) {
-        console.log(stuff);
+      }).then(function (postResp) {
+        _this4.getDataAfterPost(postResp.data.user_id);
       }).catch(function (err) {
         console.log(err);
       });

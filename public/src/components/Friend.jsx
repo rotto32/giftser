@@ -23,6 +23,7 @@ class Friend extends React.Component {
     this.showGiftBox = this.showGiftBox.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.addGift = this.addGift.bind(this);
+    this.getDataAfterPost = this.getDataAfterPost.bind(this);
   }
 
   // this.setState({
@@ -32,19 +33,35 @@ class Friend extends React.Component {
   // })
 
   getData(event) {
-    axios.get(`/api/gifts/${event.target.id}`)
+    axios
+      .get(`/api/gifts/${event.target.id}`)
       .then((data) => {
         this.setState({
           gifts: data.data,
         });
       })
-      .catch((err) => { console.log(err); });
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  getDataAfterPost(id) {
+    axios
+      .get(`/api/gifts/${id}`)
+      .then((data) => {
+        this.setState({
+          gifts: data.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   handleClick(e) {
     this.setState({
       friendId: e.target.id,
-      friendName: e.target.firstElementChild.innerHTML
+      friendName: e.target.firstElementChild.innerHTML,
     });
   }
 
@@ -84,7 +101,7 @@ class Friend extends React.Component {
         user_id: this.state.uIdForNewGift,
         type: this.state.newGiftType
       })
-      .then((stuff) => { console.log(stuff); })
+      .then((postResp) => { this.getDataAfterPost(postResp.data.user_id); })
       .catch((err) => { console.log(err); });
   }
 

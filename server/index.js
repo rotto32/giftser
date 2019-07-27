@@ -42,6 +42,7 @@ app.get('/api/gifts/:user_id', cors(), (req, res) => {
 
 app.post('/api/gifts/:user_id', cors(), (req, res) => {
   db.addGift(req.params.user_id, req.body, (response) => {
+    response.user_id = req.params.user_id;
     res.status(201).send(response);
   });
 });
