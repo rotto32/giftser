@@ -3,101 +3,101 @@ import Gift from "./Gift.jsx";
 import axios from "axios";
 
 class Friend extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            friendId: "",
-            friendName: "",
-            gifts: [],
-            showGiftBox: false,
-            uIdForNewGift: "",
-            newGiftName: "",
-            newGiftType: "",
+  constructor(props) {
+    super(props);
+    this.state = {
+      friendId: "",
+      friendName: "",
+      gifts: [],
+      showGiftBox: false,
+      uIdForNewGift: "",
+      newGiftName: "",
+      newGiftType: "",
 
 
-        }
-        this.handleClick = this.handleClick.bind(this);
-        this.hideGifts = this.hideGifts.bind(this);
-        this.getData = this.getData.bind(this);
-        this.showGiftBox = this.showGiftBox.bind(this);
-        this.handleInput = this.handleInput.bind(this);
-        this.addGift = this.addGift.bind(this);
     }
+    this.handleClick = this.handleClick.bind(this);
+    this.hideGifts = this.hideGifts.bind(this);
+    this.getData = this.getData.bind(this);
+    this.showGiftBox = this.showGiftBox.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.addGift = this.addGift.bind(this);
+  }
 
-    handleClick(e) {
-        this.setState({
-          friendId: e.target.id,
-          friendName: e.target.firstElementChild.innerHTML
-        })
+  handleClick(e) {
+    this.setState({
+      friendId: e.target.id,
+      friendName: e.target.firstElementChild.innerHTML
+    })
     
-        // this.setState({
-        //     friendId: e.target.id,
-        //     friendName: e.target.firstElementChild.innerHTML,
-        //     gifts: [{ gift_id: '1', name: 'dog', link: '' }, { gift_id: '2', name: 'bunny', link: '' }, { gift_id: '3', name: 'cat', link: '' }]
-        // })
-    }
+    // this.setState({
+    //     friendId: e.target.id,
+    //     friendName: e.target.firstElementChild.innerHTML,
+    //     gifts: [{ gift_id: '1', name: 'dog', link: '' }, { gift_id: '2', name: 'bunny', link: '' }, { gift_id: '3', name: 'cat', link: '' }]
+    // })
+  }
 
-    getData (e) {  
-        axios.get(`/api/gifts/${e.target.id}`)
-            .then(data => {
-                this.setState({
-                    gifts: data.data
-                });
-            })
-            .catch((e) => { console.log(e) })
-    }
-
-    hideGifts() {
+  getData (e) {  
+    axios.get(`/api/gifts/${e.target.id}`)
+      .then(data => {
         this.setState({
-            gifts: []
-        })
+          gifts: data.data
+        });
+      })
+      .catch((e) => { console.log(e) })
+  }
+
+  hideGifts() {
+    this.setState({
+      gifts: []
+    })
+  }
+
+  showGiftBox(e) {
+    if (this.state.showGiftBox) {
+      this.setState({
+        showGiftBox: false,
+      })
+
+    } else {
+      this.setState({
+        showGiftBox: true,
+        uIdForNewGift: e.target.id
+      })
+
     }
-
-    showGiftBox(e) {
-        if (this.state.showGiftBox) {
-            this.setState({
-                showGiftBox:false
-            })
-
-        } else {
-            this.setState({
-                showGiftBox: true,
-                uIdForNewGift: e.target.id
-            })
-
-        }
         
 
-    }
+  }
 
-    handleInput(e) {
-        this.setState({
-            [e.target.id]: e.target.value
-        })
-    }
+  handleInput(e) {
+    this.setState({
+      [e.target.id]: e.target.value
+    })
+  }
 
-    addGift(e) {
-        e.preventDefault();
-        this.setState({
-            showGiftBox: false
-        })
-        axios.post(`/api/gifts/${this.state.uIdForNewGift}`,
-        {
-            gift_name: this.state.newGiftName,
-            user_id: this.state.uIdForNewGift,
-            type: this.state.newGiftType
-        })
-            .then(()=>{console.log('success adding gift')})
-            .catch((e)=>{console.log(e)})
+  addGift(e) {
+    e.preventDefault();
+    this.setState({
+      showGiftBox: false
+    })
+    axios.post(`/api/gifts/${this.state.uIdForNewGift}`,
+      {
+        gift_name: this.state.newGiftName,
+        user_id: this.state.uIdForNewGift,
+        type: this.state.newGiftType
+      })
+      .then(()=>{console.log('success adding gift')})
+      .catch((e)=>{console.log(e)})
 
-    }
+  }
 
-    render () {
-        let friendState = this.state.gifts;
-        let showGiftBox = this.state.showGiftBox;
+  render () {
+    let friendState = this.state.gifts;
+    let showGiftBox = this.state.showGiftBox;
 
-        if (friendState.length === 0) {
-            return (
+    if (friendState.length === 0) {
+      return (
               <div
                 // id={this.props.friend.user_id}
                 className="friend"
@@ -121,10 +121,10 @@ class Friend extends React.Component {
                 </button>
                 {/* <p>{this.props.friend.gift_count}</p> */}
               </div>
-            );
+      );
 
-        } else if (!showGiftBox) {
-            return (
+    } else if (!showGiftBox) {
+      return (
               <div className="gift-list">
                 <div className="gift-list-title">
                   <h5>Gift Ideas for {this.props.friend.name}</h5>
@@ -148,9 +148,9 @@ class Friend extends React.Component {
                   Add a gift idea
                 </button>
               </div>
-            );
-        } else if (showGiftBox) {
-            return (
+      );
+    } else if (showGiftBox) {
+      return (
                 <div className="gift-list">
                     <div className="gift-list-title">
                         <h5>Gift Ideas for {this.props.friend.name}</h5>
@@ -158,12 +158,12 @@ class Friend extends React.Component {
                     </div>
                     <ul>
                         {this.state.gifts.map((el) => {
-                            return (
+                          return (
                               <Gift
                                 key={el.gift_id}
                                 gift={el}
                               />
-                            );
+                          );
                         })}
 
                     </ul>
@@ -195,9 +195,9 @@ class Friend extends React.Component {
                     </form>
                 </div>
 
-            )
-        }
+      )
     }
+  }
 }
 
 export default Friend;
