@@ -45075,7 +45075,7 @@ if(false) {}
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -45101,59 +45101,58 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var App = function (_React$Component) {
-    _inherits(App, _React$Component);
+  _inherits(App, _React$Component);
 
-    function App(props) {
-        _classCallCheck(this, App);
+  function App(props) {
+    _classCallCheck(this, App);
 
-        /* STATE */
-        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+    /* STATE */
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-        _this.state = {
-            loggedin: true,
-            username: "Adrienne",
-            user_id: 3
-            /* FUNCTION BINDINGS */
-        };return _this;
+    _this.state = {
+      loggedin: true,
+      username: "Adrienne",
+      user_id: 3
+    };
+    /* FUNCTION BINDINGS */
+    return _this;
+  }
+  /* FUNCTIONS */
+
+  /* RENDER */
+
+
+  _createClass(App, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        { className: "dash" },
+        _react2.default.createElement(
+          "nav",
+          { className: "top-nav" },
+          _react2.default.createElement(
+            "h1",
+            null,
+            "Giftser"
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "current-user" },
+            "Hello " + this.state.username + "!",
+            _react2.default.createElement(
+              "button",
+              { type: "button" },
+              "Log Out"
+            )
+          )
+        ),
+        _react2.default.createElement(_Friends2.default, { currentUser: this.state.user_id })
+      );
     }
+  }]);
 
-    /* FUNCTIONS */
-
-    /* RENDER */
-
-
-    _createClass(App, [{
-        key: "render",
-        value: function render() {
-
-            return _react2.default.createElement(
-                "div",
-                { className: "dash" },
-                _react2.default.createElement(
-                    "nav",
-                    { className: "top-nav" },
-                    _react2.default.createElement(
-                        "h1",
-                        null,
-                        "Giftser"
-                    ),
-                    _react2.default.createElement(
-                        "div",
-                        { className: "current-user" },
-                        "Hello " + this.state.username + "!",
-                        _react2.default.createElement(
-                            "button",
-                            null,
-                            "Log Out"
-                        )
-                    )
-                ),
-                _react2.default.createElement(_Friends2.default, { currentUser: this.state.user_id })
-            );
-        }
-    }]);
-
-    return App;
+  return App;
 }(_react2.default.Component);
 
 exports.default = App;
@@ -45192,7 +45191,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-//come back and use moment
+// come back and use moment
 
 var Comments = function (_React$Component) {
   _inherits(Comments, _React$Component);
@@ -45203,9 +45202,8 @@ var Comments = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Comments.__proto__ || Object.getPrototypeOf(Comments)).call(this, props));
 
     _this.state = {
-      comment: "",
-      commentId: ""
-
+      comment: '',
+      commentId: ''
     };
 
     _this.updateComment = _this.updateComment.bind(_this);
@@ -45213,38 +45211,37 @@ var Comments = function (_React$Component) {
   }
 
   _createClass(Comments, [{
-    key: "updateComment",
-    value: function updateComment(e) {
-      console.log(e.target);
+    key: 'updateComment',
+    value: function updateComment(event) {
+      console.log(event.target);
       // this.setState({
       //   comment: ""
       // })
-
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       var parsedTimestamp = new Date(this.props.comment.timestamp * 1000);
       parsedTimestamp = parsedTimestamp.toLocaleString();
       return _react2.default.createElement(
-        "div",
-        { className: "comment-box" },
+        'div',
+        { className: 'comment-box' },
         _react2.default.createElement(
-          "div",
-          { className: "comment-box-user" },
+          'div',
+          { className: 'comment-box-user' },
           this.props.comment.name,
-          " -",
-          " ",
+          ' -',
+          ' ',
           _react2.default.createElement(
             _reactMoment2.default,
             { fromNow: true, ago: true },
             parsedTimestamp
           ),
-          " ago"
+          'ago'
         ),
         _react2.default.createElement(
-          "div",
-          { className: "comment-box-comment" },
+          'div',
+          { className: 'comment-box-comment' },
           this.props.comment.comment
         )
       );
@@ -45378,8 +45375,8 @@ var Friend = function (_React$Component) {
     }
   }, {
     key: 'addGift',
-    value: function addGift(e) {
-      e.preventDefault();
+    value: function addGift(event) {
+      event.preventDefault();
       this.setState({
         showGiftBox: false
       });
@@ -45389,8 +45386,8 @@ var Friend = function (_React$Component) {
         type: this.state.newGiftType
       }).then(function () {
         console.log('success adding gift');
-      }).catch(function (e) {
-        console.log(e);
+      }).catch(function (err) {
+        console.log(err);
       });
     }
   }, {
@@ -45611,7 +45608,7 @@ exports.default = Friend;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -45620,13 +45617,13 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Friend = __webpack_require__(/*! ./Friend.jsx */ "./public/src/components/Friend.jsx");
-
-var _Friend2 = _interopRequireDefault(_Friend);
-
 var _axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 var _axios2 = _interopRequireDefault(_axios);
+
+var _Friend = __webpack_require__(/*! ./Friend.jsx */ "./public/src/components/Friend.jsx");
+
+var _Friend2 = _interopRequireDefault(_Friend);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45637,55 +45634,55 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Friends = function (_React$Component) {
-    _inherits(Friends, _React$Component);
+  _inherits(Friends, _React$Component);
 
-    function Friends(props) {
-        _classCallCheck(this, Friends);
+  function Friends(props) {
+    _classCallCheck(this, Friends);
 
-        var _this = _possibleConstructorReturn(this, (Friends.__proto__ || Object.getPrototypeOf(Friends)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Friends.__proto__ || Object.getPrototypeOf(Friends)).call(this, props));
 
-        _this.state = {
-            friends: []
-        };
-        return _this;
+    _this.state = {
+      friends: []
+    };
+    return _this;
+  }
+
+  _createClass(Friends, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      _axios2.default.get("/api/friends/" + this.props.currentUser).then(function (data) {
+        _this2.setState({
+          friends: data.data
+        });
+      }).catch(function (e) {
+        console.log('error with getting friend data ', e);
+      });
     }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        { className: "content" },
+        _react2.default.createElement(
+          "h3",
+          null,
+          "Friends"
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "friends-list" },
+          this.state.friends.map(function (el) {
+            return _react2.default.createElement(_Friend2.default, { key: el.user_id, friend: el });
+          })
+        )
+      );
+    }
+  }]);
 
-    _createClass(Friends, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            var _this2 = this;
-
-            _axios2.default.get("/api/friends/" + this.props.currentUser).then(function (data) {
-                _this2.setState({
-                    friends: data.data
-                });
-            }).catch(function (e) {
-                console.log('error with getting friend data ', e);
-            });
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            return _react2.default.createElement(
-                "div",
-                { className: "content" },
-                _react2.default.createElement(
-                    "h3",
-                    null,
-                    "Friends"
-                ),
-                _react2.default.createElement(
-                    "div",
-                    { className: "friends-list" },
-                    this.state.friends.map(function (el) {
-                        return _react2.default.createElement(_Friend2.default, { key: el.user_id, friend: el });
-                    })
-                )
-            );
-        }
-    }]);
-
-    return Friends;
+  return Friends;
 }(_react2.default.Component);
 
 exports.default = Friends;

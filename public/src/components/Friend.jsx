@@ -73,8 +73,8 @@ class Friend extends React.Component {
     });
   }
 
-  addGift(e) {
-    e.preventDefault();
+  addGift(event) {
+    event.preventDefault();
     this.setState({
       showGiftBox: false,
     });
@@ -84,8 +84,8 @@ class Friend extends React.Component {
         user_id: this.state.uIdForNewGift,
         type: this.state.newGiftType
       })
-      .then(()=>{console.log('success adding gift');})
-      .catch((e)=>{console.log(e);});
+      .then(() => { console.log('success adding gift'); })
+      .catch((err) => { console.log(err); });
   }
 
   render() {

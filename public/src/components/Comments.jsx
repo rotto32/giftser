@@ -1,41 +1,37 @@
-import React from "react";
-import Moment from "react-moment";
-//come back and use moment
+import React from 'react';
+import Moment from 'react-moment';
+// come back and use moment
 
 class Comments extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-          comment: "",
-          commentId: ""
-
-        }
-
-        this.updateComment = this.updateComment.bind(this);
+    this.state = {
+      comment: '',
+      commentId: ''
     }
 
-    updateComment(e) {
-      console.log(e.target)
-      // this.setState({
-      //   comment: ""
-      // })
+    this.updateComment = this.updateComment.bind(this);
+  }
 
+  updateComment(event) {
+    console.log(event.target)
+    // this.setState({
+    //   comment: ""
+    // })
+  }
 
-
-    }
-
-    render() {
-      let parsedTimestamp = new Date(this.props.comment.timestamp * 1000);
-      parsedTimestamp = parsedTimestamp.toLocaleString();
-        return (
+  render() {
+    let parsedTimestamp = new Date(this.props.comment.timestamp * 1000);
+    parsedTimestamp = parsedTimestamp.toLocaleString();
+    return (
           <div className="comment-box">
             <div className="comment-box-user">
-              {this.props.comment.name} -{" "}
+              {this.props.comment.name} -{' '}
               <Moment fromNow ago>
                 {parsedTimestamp}
-              </Moment> ago
-           
+              </Moment>
+              ago
             </div>
             <div className="comment-box-comment">
               {this.props.comment.comment}
@@ -47,11 +43,8 @@ class Comments extends React.Component {
               Update
             </button> */}
           </div>
-        );
-    }
-
-
-
+    );
+  }
 }
 
 export default Comments;
