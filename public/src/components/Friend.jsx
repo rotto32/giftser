@@ -15,7 +15,7 @@ class Friend extends React.Component {
       newGiftType: "",
 
 
-    }
+    };
     this.handleClick = this.handleClick.bind(this);
     this.hideGifts = this.hideGifts.bind(this);
     this.getData = this.getData.bind(this);
@@ -24,72 +24,67 @@ class Friend extends React.Component {
     this.addGift = this.addGift.bind(this);
   }
 
+  // this.setState({
+  //     friendId: e.target.id,
+  //     friendName: e.target.firstElementChild.innerHTML,
+  //     gifts: [{ gift_id: '1', name: 'dog', link: '' }, { gift_id: '2', name: 'bunny', link: '' }, { gift_id: '3', name: 'cat', link: '' }]
+  // })
+
+  getData(event) {
+    axios.get(`/api/gifts/${event.target.id}`)
+      .then((data) => {
+        this.setState({
+          gifts: data.data,
+        });
+      })
+      .catch((err) => { console.log(err); });
+  }
+
   handleClick(e) {
     this.setState({
       friendId: e.target.id,
       friendName: e.target.firstElementChild.innerHTML
-    })
-    
-    // this.setState({
-    //     friendId: e.target.id,
-    //     friendName: e.target.firstElementChild.innerHTML,
-    //     gifts: [{ gift_id: '1', name: 'dog', link: '' }, { gift_id: '2', name: 'bunny', link: '' }, { gift_id: '3', name: 'cat', link: '' }]
-    // })
-  }
-
-  getData (e) {  
-    axios.get(`/api/gifts/${e.target.id}`)
-      .then(data => {
-        this.setState({
-          gifts: data.data
-        });
-      })
-      .catch((e) => { console.log(e) })
+    });
   }
 
   hideGifts() {
     this.setState({
       gifts: []
-    })
+    });
   }
 
   showGiftBox(e) {
     if (this.state.showGiftBox) {
       this.setState({
         showGiftBox: false,
-      })
-
+      });
     } else {
       this.setState({
         showGiftBox: true,
-        uIdForNewGift: e.target.id
-      })
-
+        uIdForNewGift: e.target.id,
+      });
     }
-        
-
   }
 
   handleInput(e) {
     this.setState({
-      [e.target.id]: e.target.value
-    })
+      [e.target.id]: e.target.value,
+    });
   }
 
   addGift(e) {
     e.preventDefault();
     this.setState({
-      showGiftBox: false
-    })
+      showGiftBox: false,
+    });
     axios.post(`/api/gifts/${this.state.uIdForNewGift}`,
       {
         gift_name: this.state.newGiftName,
         user_id: this.state.uIdForNewGift,
         type: this.state.newGiftType
       })
-      .then(()=>{console.log('success adding gift')})
-      .catch((e)=>{console.log(e)})
-
+      .then(()=>{console.log('success adding gift');})
+      .catch((e)=>{console.log(e);});
   }
 
   render () {
@@ -98,34 +93,35 @@ class Friend extends React.Component {
 
     if (friendState.length === 0) {
       return (
-              <div
+        <div
                 // id={this.props.friend.user_id}
-                className="friend"
+          className="friend"
                 // onClick={this.handleClick}
                 // onClick = {this.getData}
-              >
-                <div className="friend-header">
-                    <img src={ this.props.friend.url }></img>
-                    <div className="friend-title">
-                  <h4>{this.props.friend.name}</h4>
-                  <p>Gifts: {this.props.friend.gift_count}</p>
-                        </div>
-                </div>
-
-                <button
-                  className="btn-show-gifts"
-                  id={this.props.friend.user_id}
-                  onClick={this.getData}
-                >
-                  Show Gifts
-                </button>
-                {/* <p>{this.props.friend.gift_count}</p> */}
+        >
+          <div className="friend-header">
+            <img src={ this.props.friend.url }></img>
+            <div className="friend-title">
+                <h4>{this.props.friend.name}</h4>
+                <p>Gifts: {this.props.friend.gift_count}</p>
               </div>
-      );
+          </div>
 
-    } else if (!showGiftBox) {
+          <button
+            type="button"
+            className="btn-show-gifts"
+            id={ this.props.friend.user_id }
+            onClick={this.getData}
+          >
+            Show Gifts
+          </button>
+          {/* <p>{this.props.friend.gift_count}</p> */}
+        </div>
+      );
+    }
+    if (!showGiftBox) {
       return (
-              <div className="gift-list">
+        <div className="gift-list">
                 <div className="gift-list-title">
                   <h5>Gift Ideas for {this.props.friend.name}</h5>
                   <button
@@ -151,51 +147,51 @@ class Friend extends React.Component {
       );
     } else if (showGiftBox) {
       return (
-                <div className="gift-list">
-                    <div className="gift-list-title">
-                        <h5>Gift Ideas for {this.props.friend.name}</h5>
-                        <button className="btn-close" onClick={this.hideGifts}>x</button>
+        <div className="gift-list">
+                  <div className="gift-list-title">
+                      <h5>Gift Ideas for {this.props.friend.name}</h5>
+                      <button className="btn-close" onClick={this.hideGifts}>x</button>
                     </div>
-                    <ul>
-                        {this.state.gifts.map((el) => {
-                          return (
-                              <Gift
+                  <ul>
+                      {this.state.gifts.map((el) => {
+                        return (
+                            <Gift
                                 key={el.gift_id}
                                 gift={el}
                               />
-                          );
-                        })}
+                        );
+                      })}
 
                     </ul>
-                    {/* <button className="btn-close-gift-box" onClick={this.showGiftBox}>x</button> */}
-                    <form onSubmit={this.addGift}>
+                  {/* <button className="btn-close-gift-box" onClick={this.showGiftBox}>x</button> */}
+                  <form onSubmit={this.addGift}>
 
-                        <label htmlFor="newGiftName">New gift idea: </label> <button className="btn-close-gift-box" onClick={this.showGiftBox}>x</button>
-                        <br />
-                        <input
-                            type="text"
-                            id="newGiftName"
-                            value={this.state.newGiftName}
-                            onChange={this.handleInput}
-                            required
+                      <label htmlFor="newGiftName">New gift idea: </label> <button className="btn-close-gift-box" onClick={this.showGiftBox}>x</button>
+                      <br />
+                      <input
+                          type="text"
+                          id="newGiftName"
+                          value={this.state.newGiftName}
+                          onChange={this.handleInput}
+                          required
                         /> <br />
 
-                        <select id="newGiftType" onChange={this.handleInput}>
-                            <option value="">--Please choose an event--</option>
-                            <option value="birthday">Birthday</option>
-                            <option value="anniversary">Anniversary</option>
-                            <option value="valentines">Valentines</option>
-                            <option value="christmas">Christmas</option>
-                            <option value="just because">Just Because</option>
-                            <option value="other">Other</option>
+                      <select id="newGiftType" onChange={this.handleInput}>
+                          <option value="">--Please choose an event--</option>
+                          <option value="birthday">Birthday</option>
+                          <option value="anniversary">Anniversary</option>
+                          <option value="valentines">Valentines</option>
+                          <option value="christmas">Christmas</option>
+                          <option value="just because">Just Because</option>
+                          <option value="other">Other</option>
                         </select>
-                        <button>Submit</button>
+                      <button>Submit</button>
 
 
                     </form>
                 </div>
 
-      )
+      );
     }
   }
 }
