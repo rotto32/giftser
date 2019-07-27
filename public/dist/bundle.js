@@ -45738,10 +45738,10 @@ var Gift = function (_React$Component) {
     _this.state = {
       showComments: false,
       comments: [],
-      giftIdForNewComment: '',
+      giftIdForNewComment: "",
       showCommentBox: false,
-      newCommentName: '',
-      newCommentText: ''
+      newCommentName: "",
+      newCommentText: ""
     };
 
     _this.toggleComments = _this.toggleComments.bind(_this);
@@ -45776,16 +45776,16 @@ var Gift = function (_React$Component) {
     }
   }, {
     key: 'openCommentBox',
-    value: function openCommentBox(e) {
+    value: function openCommentBox(event) {
       this.setState({
-        giftIdForNewComment: e.target.id,
+        giftIdForNewComment: event.target.id,
         showCommentBox: !this.state.showCommentBox
       });
     }
   }, {
     key: 'handleInput',
-    value: function handleInput(e) {
-      this.setState(_defineProperty({}, e.target.id, e.target.value));
+    value: function handleInput(event) {
+      this.setState(_defineProperty({}, event.target.id, event.target.value));
     }
   }, {
     key: 'addComment',
@@ -45833,10 +45833,14 @@ var Gift = function (_React$Component) {
             'h5',
             null,
             this.props.gift.gift_name,
-            ' ',
+            " ",
             _react2.default.createElement(
               'button',
-              { type: 'button', className: 'btn-close', onClick: this.toggleComments },
+              {
+                type: 'button',
+                className: 'btn-close',
+                onClick: this.toggleComments
+              },
               'x'
             )
           ),
@@ -45848,10 +45852,15 @@ var Gift = function (_React$Component) {
             { className: 'comment-end-btns' },
             _react2.default.createElement(
               'button',
-              { type: 'button', id: this.props.gift.gift_id, className: 'btn-add-comment', onClick: this.openCommentBox },
+              {
+                type: 'button',
+                id: this.props.gift.gift_id,
+                className: 'btn-add-comment',
+                onClick: this.openCommentBox
+              },
               'Add Comment'
             ),
-            '  ',
+            " ",
             _react2.default.createElement(
               'button',
               { className: 'btn-big-close', onClick: this.toggleComments },
@@ -45868,7 +45877,7 @@ var Gift = function (_React$Component) {
             'h5',
             null,
             this.props.gift.gift_name,
-            ' ',
+            " ",
             _react2.default.createElement(
               'button',
               { onClick: this.toggleComments },

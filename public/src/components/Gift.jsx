@@ -9,10 +9,10 @@ class Gift extends React.Component {
     this.state = {
       showComments: false,
       comments: [],
-      giftIdForNewComment: '',
+      giftIdForNewComment: "",
       showCommentBox: false,
-      newCommentName: '',
-      newCommentText: '',
+      newCommentName: "",
+      newCommentText: ""
     };
 
     this.toggleComments = this.toggleComments.bind(this);
@@ -24,11 +24,12 @@ class Gift extends React.Component {
   }
 
   getComments(event) {
-    axios.get(`/api/comments/${event.target.id}`)
-      .then((data) => {
+    axios
+      .get(`/api/comments/${event.target.id}`)
+      .then(data => {
         this.setState({
           showComments: !this.state.showComments,
-          comments: data.data,
+          comments: data.data
         });
       })
       .catch(err => console.log(err));
@@ -36,34 +37,34 @@ class Gift extends React.Component {
 
   toggleComments() {
     this.setState({
-      showComments: !this.state.showComments,
+      showComments: !this.state.showComments
     });
   }
 
-  openCommentBox(e) {
+  openCommentBox(event) {
     this.setState({
-      giftIdForNewComment: e.target.id,
+      giftIdForNewComment: event.target.id,
       showCommentBox: !this.state.showCommentBox,
     });
   }
 
-  handleInput(e) {
+  handleInput(event) {
     this.setState({
-      [e.target.id]: e.target.value,
+      [event.target.id]: event.target.value,
     });
   }
 
-  addComment (event) {
+  addComment(event) {
     event.preventDefault();
     this.setState({
-      showCommentBox: !this.state.showCommentBox,
+      showCommentBox: !this.state.showCommentBox
     });
-    axios.post(`/api/comments/${this.state.giftIdForNewComment}`,
-      {
+    axios
+      .post(`/api/comments/${this.state.giftIdForNewComment}`, {
         name: this.state.newCommentName,
         comment: this.state.newCommentText,
         timestamp: Date.now(),
-        gift_id: this.state.giftIdForNewComment,
+        gift_id: this.state.giftIdForNewComment
       })
       .then(() => {
         this.updateComments(this.state.giftIdForNewComment);
@@ -74,7 +75,8 @@ class Gift extends React.Component {
   }
 
   updateComments(id) {
-    axios.get(`/api/comments/${id}`)
+    axios
+      .get(`/api/comments/${id}`)
       .then((data) => {
         this.setState({
           comments: data.data,
@@ -83,38 +85,53 @@ class Gift extends React.Component {
       .catch(e => console.log(e));
   }
 
-  render () {
-    let showComments = this.state.showComments;
-    let showCommentBox = this.state.showCommentBox;
+  render() {
+    const showComments = this.state.showComments;
+    const showCommentBox = this.state.showCommentBox;
     if (showComments && !showCommentBox) {
       return (
         <div className="comment-list">
           <h5>
-            {this.props.gift.gift_name}{' '}
-            <button type="button" className="btn-close" onClick={this.toggleComments}>x</button>
+            {this.props.gift.gift_name}
+            {" "}
+            <button
+              type="button"
+              className="btn-close"
+              onClick={this.toggleComments}
+            >
+              x
+            </button>
           </h5>
 
-          {this.state.comments.map((el) => {
+          {this.state.comments.map(el => {
             return <Comments key={el.comment_id} comment={el} />;
           })}
           <div className="comment-end-btns">
-            <button type="button" id={this.props.gift.gift_id} className="btn-add-comment" onClick={this.openCommentBox}>Add Comment</button>  <button className = "btn-big-close" onClick={this.toggleComments}>Close</button>
+            <button
+              type="button"
+              id={this.props.gift.gift_id}
+              className="btn-add-comment"
+              onClick={this.openCommentBox}
+            >
+              Add Comment
+            </button>{" "}
+            <button className="btn-big-close" onClick={this.toggleComments}>
+              Close
+            </button>
           </div>
         </div>
       );
-    // eslint-disable-next-line no-else-return
+      // eslint-disable-next-line no-else-return
     } else if (showCommentBox && showComments) {
       return (
         <div>
           <h5>
-            {this.props.gift.gift_name}{' '}
+            {this.props.gift.gift_name}{" "}
             <button onClick={this.toggleComments}>x</button>
           </h5>
 
-          {this.state.comments.map((el) => {
-            return (
-              <Comments key={el.comment_id} comment={el} />
-            );
+          {this.state.comments.map(el => {
+            return <Comments key={el.comment_id} comment={el} />;
           })}
           {/* <button id={this.props.gift.gift_id} className="btn-add-comment" onClick={this.openCommentBox}>Add Comment</button> */}
           <form onSubmit={this.addComment}>
