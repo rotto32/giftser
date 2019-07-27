@@ -60,7 +60,7 @@ function addGift(user_id, newGift, cb) {
           return client.query(
             `UPDATE users SET gifts[(SELECT gift_count FROM users WHERE user_id=${user_id})] = (SELECT MAX(gift_id) FROM gifts) where user_id=${user_id};`
           )
-            .then((response)=>{ cb(response); })
+            .then((response) => { cb(response); })
             .catch(e => console.log('error with updating user gift list', e));
         })
         .catch(e => console.log('error with updating gift count', e));
