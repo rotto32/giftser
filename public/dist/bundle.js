@@ -45355,10 +45355,10 @@ var Friend = function (_React$Component) {
     }
   }, {
     key: 'handleClick',
-    value: function handleClick(e) {
+    value: function handleClick(event) {
       this.setState({
-        friendId: e.target.id,
-        friendName: e.target.firstElementChild.innerHTML
+        friendId: event.target.id,
+        friendName: event.target.firstElementChild.innerHTML
       });
     }
   }, {
@@ -45477,11 +45477,64 @@ var Friend = function (_React$Component) {
             )
           ),
           _react2.default.createElement(
-            'ul',
+            'div',
             null,
-            this.state.gifts.map(function (el) {
-              return _react2.default.createElement(_Gift2.default, { key: el.gift_id, gift: el });
-            })
+            _react2.default.createElement(
+              'h6',
+              null,
+              'Anniversary'
+            ),
+            _react2.default.createElement(
+              'ul',
+              null,
+              this.state.gifts.map(function (gift) {
+                if (gift.type === "anniversary") {
+                  return _react2.default.createElement(_Gift2.default, { key: gift.gift_id, gift: gift });
+                }
+              })
+            ),
+            _react2.default.createElement(
+              'h6',
+              null,
+              'Birthday'
+            ),
+            _react2.default.createElement(
+              'ul',
+              null,
+              this.state.gifts.map(function (gift) {
+                if (gift.type === "birthday") {
+                  return _react2.default.createElement(_Gift2.default, { key: gift.gift_id, gift: gift });
+                }
+              })
+            ),
+            _react2.default.createElement(
+              'h6',
+              null,
+              'Christmas'
+            ),
+            _react2.default.createElement(
+              'ul',
+              null,
+              this.state.gifts.map(function (gift) {
+                if (gift.type === "christmas") {
+                  return _react2.default.createElement(_Gift2.default, { key: gift.gift_id, gift: gift });
+                }
+              })
+            ),
+            _react2.default.createElement(
+              'h6',
+              null,
+              'Valentines'
+            ),
+            _react2.default.createElement(
+              'ul',
+              null,
+              this.state.gifts.map(function (gift) {
+                if (gift.type === "valentines") {
+                  return _react2.default.createElement(_Gift2.default, { key: gift.gift_id, gift: gift });
+                }
+              })
+            )
           ),
           _react2.default.createElement(
             'button',
@@ -45733,6 +45786,10 @@ var _Comments = __webpack_require__(/*! ./Comments.jsx */ "./public/src/componen
 
 var _Comments2 = _interopRequireDefault(_Comments);
 
+var _GiftCategories = __webpack_require__(/*! ./GiftCategories.jsx */ "./public/src/components/GiftCategories.jsx");
+
+var _GiftCategories2 = _interopRequireDefault(_GiftCategories);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -45841,6 +45898,7 @@ var Gift = function (_React$Component) {
     value: function render() {
       var showComments = this.state.showComments;
       var showCommentBox = this.state.showCommentBox;
+      var xmasTitle = '<h6>Christmas</h6>';
       if (showComments && !showCommentBox) {
         return _react2.default.createElement(
           'div',
@@ -45955,6 +46013,38 @@ var Gift = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Gift;
+
+/***/ }),
+
+/***/ "./public/src/components/GiftCategories.jsx":
+/*!**************************************************!*\
+  !*** ./public/src/components/GiftCategories.jsx ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function GiftCategories(props) {
+  return _react2.default.createElement(
+    'li',
+    null,
+    props.gift.gift_name
+  );
+}
+
+exports.default = GiftCategories;
 
 /***/ }),
 

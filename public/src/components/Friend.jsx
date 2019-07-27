@@ -58,10 +58,10 @@ class Friend extends React.Component {
       });
   }
 
-  handleClick(e) {
+  handleClick(event) {
     this.setState({
-      friendId: e.target.id,
-      friendName: e.target.firstElementChild.innerHTML,
+      friendId: event.target.id,
+      friendName: event.target.firstElementChild.innerHTML,
     });
   }
 
@@ -141,9 +141,7 @@ class Friend extends React.Component {
       return (
         <div className="gift-list">
           <div className="gift-list-title">
-            <h5>
-              Gift Ideas for {this.props.friend.name}
-            </h5>
+            <h5>Gift Ideas for {this.props.friend.name}</h5>
             <button
               type="button"
               className="btn-close"
@@ -152,11 +150,42 @@ class Friend extends React.Component {
               x
             </button>
           </div>
-          <ul>
-            {this.state.gifts.map((el) => {
-              return <Gift key={el.gift_id} gift={el} />;
-            })}
-          </ul>
+
+          <div>
+            <h6>Anniversary</h6>
+            <ul>
+              {this.state.gifts.map(gift => {
+                if (gift.type === "anniversary") {
+                  return <Gift key={gift.gift_id} gift={gift} />;
+                }
+              })}
+            </ul>
+            <h6>Birthday</h6>
+            <ul>
+              {this.state.gifts.map(gift => {
+                if (gift.type === "birthday") {
+                  return <Gift key={gift.gift_id} gift={gift} />;
+                }
+              })}
+            </ul>
+            <h6>Christmas</h6>
+            <ul>
+              {this.state.gifts.map(gift => {
+                if (gift.type === "christmas") {
+                  return <Gift key={gift.gift_id} gift={gift} />;
+                }
+              })}
+            </ul>
+            <h6>Valentines</h6>
+            <ul>
+              {this.state.gifts.map(gift => {
+                if (gift.type === "valentines") {
+                  return <Gift key={gift.gift_id} gift={gift} />;
+                }
+              })}
+            </ul>
+          </div>
+
           <button
             type="button"
             id={this.props.friend.user_id}

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Comments from './Comments.jsx';
+import GiftCategories from './GiftCategories.jsx';
 
 class Gift extends React.Component {
   constructor(props) {
@@ -88,6 +89,7 @@ class Gift extends React.Component {
   render() {
     const showComments = this.state.showComments;
     const showCommentBox = this.state.showCommentBox;
+    let xmasTitle = '<h6>Christmas</h6>';
     if (showComments && !showCommentBox) {
       return (
         <div className="comment-list">
@@ -159,9 +161,9 @@ class Gift extends React.Component {
       );
     } else {
       return (
-        <li onClick={this.getComments} id={this.props.gift.gift_id}>
-          {this.props.gift.gift_name}
-        </li>
+          <li onClick={this.getComments} id={this.props.gift.gift_id}>
+            {this.props.gift.gift_name}
+          </li>
       );
     }
   }
