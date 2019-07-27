@@ -45384,8 +45384,8 @@ var Friend = function (_React$Component) {
         gift_name: this.state.newGiftName,
         user_id: this.state.uIdForNewGift,
         type: this.state.newGiftType
-      }).then(function () {
-        console.log('success adding gift');
+      }).then(function (stuff) {
+        console.log(stuff);
       }).catch(function (err) {
         console.log(err);
       });

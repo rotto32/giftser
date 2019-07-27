@@ -84,7 +84,7 @@ class Friend extends React.Component {
         user_id: this.state.uIdForNewGift,
         type: this.state.newGiftType
       })
-      .then(() => { console.log('success adding gift'); })
+      .then((stuff) => { console.log(stuff); })
       .catch((err) => { console.log(err); });
   }
 
