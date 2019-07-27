@@ -45700,7 +45700,7 @@ exports.default = Friends;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -45709,13 +45709,13 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Comments = __webpack_require__(/*! ./Comments.jsx */ "./public/src/components/Comments.jsx");
-
-var _Comments2 = _interopRequireDefault(_Comments);
-
 var _axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 var _axios2 = _interopRequireDefault(_axios);
+
+var _Comments = __webpack_require__(/*! ./Comments.jsx */ "./public/src/components/Comments.jsx");
+
+var _Comments2 = _interopRequireDefault(_Comments);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45728,206 +45728,205 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Gift = function (_React$Component) {
-    _inherits(Gift, _React$Component);
+  _inherits(Gift, _React$Component);
 
-    function Gift(props) {
-        _classCallCheck(this, Gift);
+  function Gift(props) {
+    _classCallCheck(this, Gift);
 
-        var _this = _possibleConstructorReturn(this, (Gift.__proto__ || Object.getPrototypeOf(Gift)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Gift.__proto__ || Object.getPrototypeOf(Gift)).call(this, props));
 
-        _this.state = {
-            showComments: false,
-            comments: [],
-            giftIdForNewComment: "",
-            showCommentBox: false,
-            newCommentName: "",
-            newCommentText: ""
-        };
+    _this.state = {
+      showComments: false,
+      comments: [],
+      giftIdForNewComment: '',
+      showCommentBox: false,
+      newCommentName: '',
+      newCommentText: ''
+    };
 
-        _this.toggleComments = _this.toggleComments.bind(_this);
-        _this.getComments = _this.getComments.bind(_this);
-        _this.openCommentBox = _this.openCommentBox.bind(_this);
-        _this.handleInput = _this.handleInput.bind(_this);
-        _this.addComment = _this.addComment.bind(_this);
-        _this.updateComments = _this.updateComments.bind(_this);
-        return _this;
+    _this.toggleComments = _this.toggleComments.bind(_this);
+    _this.getComments = _this.getComments.bind(_this);
+    _this.openCommentBox = _this.openCommentBox.bind(_this);
+    _this.handleInput = _this.handleInput.bind(_this);
+    _this.addComment = _this.addComment.bind(_this);
+    _this.updateComments = _this.updateComments.bind(_this);
+    return _this;
+  }
+
+  _createClass(Gift, [{
+    key: 'getComments',
+    value: function getComments(event) {
+      var _this2 = this;
+
+      _axios2.default.get('/api/comments/' + event.target.id).then(function (data) {
+        _this2.setState({
+          showComments: !_this2.state.showComments,
+          comments: data.data
+        });
+      }).catch(function (err) {
+        return console.log(err);
+      });
     }
+  }, {
+    key: 'toggleComments',
+    value: function toggleComments() {
+      this.setState({
+        showComments: !this.state.showComments
+      });
+    }
+  }, {
+    key: 'openCommentBox',
+    value: function openCommentBox(e) {
+      this.setState({
+        giftIdForNewComment: e.target.id,
+        showCommentBox: !this.state.showCommentBox
+      });
+    }
+  }, {
+    key: 'handleInput',
+    value: function handleInput(e) {
+      this.setState(_defineProperty({}, e.target.id, e.target.value));
+    }
+  }, {
+    key: 'addComment',
+    value: function addComment(event) {
+      var _this3 = this;
 
-    _createClass(Gift, [{
-        key: "getComments",
-        value: function getComments(e) {
-            var _this2 = this;
+      event.preventDefault();
+      this.setState({
+        showCommentBox: !this.state.showCommentBox
+      });
+      _axios2.default.post('/api/comments/' + this.state.giftIdForNewComment, {
+        name: this.state.newCommentName,
+        comment: this.state.newCommentText,
+        timestamp: Date.now(),
+        gift_id: this.state.giftIdForNewComment
+      }).then(function () {
+        _this3.updateComments(_this3.state.giftIdForNewComment);
+      }).catch(function (err) {
+        console.log(err);
+      });
+    }
+  }, {
+    key: 'updateComments',
+    value: function updateComments(id) {
+      var _this4 = this;
 
-            _axios2.default.get("/api/comments/" + e.target.id).then(function (data) {
-                _this2.setState({
-                    showComments: !_this2.state.showComments,
-                    comments: data.data
-                });
-            }).catch(function (e) {
-                return console.log(e);
-            });
-        }
-    }, {
-        key: "toggleComments",
-        value: function toggleComments() {
-            this.setState({
-                showComments: !this.state.showComments
-            });
-        }
-    }, {
-        key: "openCommentBox",
-        value: function openCommentBox(e) {
-            this.setState({
-                giftIdForNewComment: e.target.id,
-                showCommentBox: !this.state.showCommentBox
-            });
-        }
-    }, {
-        key: "handleInput",
-        value: function handleInput(e) {
-            this.setState(_defineProperty({}, e.target.id, e.target.value));
-        }
-    }, {
-        key: "addComment",
-        value: function addComment(e) {
-            var _this3 = this;
+      _axios2.default.get('/api/comments/' + id).then(function (data) {
+        _this4.setState({
+          comments: data.data
+        });
+      }).catch(function (e) {
+        return console.log(e);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var showComments = this.state.showComments;
+      var showCommentBox = this.state.showCommentBox;
+      if (showComments && !showCommentBox) {
+        return _react2.default.createElement(
+          'div',
+          { className: 'comment-list' },
+          _react2.default.createElement(
+            'h5',
+            null,
+            this.props.gift.gift_name,
+            ' ',
+            _react2.default.createElement(
+              'button',
+              { type: 'button', className: 'btn-close', onClick: this.toggleComments },
+              'x'
+            )
+          ),
+          this.state.comments.map(function (el) {
+            return _react2.default.createElement(_Comments2.default, { key: el.comment_id, comment: el });
+          }),
+          _react2.default.createElement(
+            'div',
+            { className: 'comment-end-btns' },
+            _react2.default.createElement(
+              'button',
+              { type: 'button', id: this.props.gift.gift_id, className: 'btn-add-comment', onClick: this.openCommentBox },
+              'Add Comment'
+            ),
+            '  ',
+            _react2.default.createElement(
+              'button',
+              { className: 'btn-big-close', onClick: this.toggleComments },
+              'Close'
+            )
+          )
+        );
+        // eslint-disable-next-line no-else-return
+      } else if (showCommentBox && showComments) {
+        return _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'h5',
+            null,
+            this.props.gift.gift_name,
+            ' ',
+            _react2.default.createElement(
+              'button',
+              { onClick: this.toggleComments },
+              'x'
+            )
+          ),
+          this.state.comments.map(function (el) {
+            return _react2.default.createElement(_Comments2.default, { key: el.comment_id, comment: el });
+          }),
+          _react2.default.createElement(
+            'form',
+            { onSubmit: this.addComment },
+            _react2.default.createElement(
+              'label',
+              { htmlFor: 'name' },
+              'Enter your name: '
+            ),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('input', {
+              type: 'text',
+              id: 'newCommentName',
+              value: this.state.newCommentName,
+              onChange: this.handleInput,
+              required: true
+            }),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement(
+              'label',
+              { htmlFor: 'new-comment' },
+              'Leave a comment:'
+            ),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('textarea', {
+              value: this.state.newCommentText,
+              onChange: this.handleInput,
+              id: 'newCommentText',
+              rows: '5',
+              cols: '33'
+            }),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement(
+              'button',
+              { type: 'submit' },
+              'Submit'
+            )
+          )
+        );
+      } else {
+        return _react2.default.createElement(
+          'li',
+          { onClick: this.getComments, id: this.props.gift.gift_id },
+          this.props.gift.gift_name
+        );
+      }
+    }
+  }]);
 
-            e.preventDefault();
-            this.setState({
-                showCommentBox: !this.state.showCommentBox
-            });
-            _axios2.default.post("/api/comments/" + this.state.giftIdForNewComment, {
-                name: this.state.newCommentName,
-                comment: this.state.newCommentText,
-                timestamp: Date.now(),
-                gift_id: this.state.giftIdForNewComment
-            }).then(function () {
-                _this3.updateComments(_this3.state.giftIdForNewComment);
-            }).catch(function (e) {
-                console.log(e);
-            });
-        }
-    }, {
-        key: "updateComments",
-        value: function updateComments(id) {
-            var _this4 = this;
-
-            _axios2.default.get("/api/comments/" + id).then(function (data) {
-                _this4.setState({
-                    comments: data.data
-                });
-            }).catch(function (e) {
-                return console.log(e);
-            });
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var showComments = this.state.showComments;
-            var showCommentBox = this.state.showCommentBox;
-            if (showComments && !showCommentBox) {
-                return _react2.default.createElement(
-                    "div",
-                    { className: "comment-list" },
-                    _react2.default.createElement(
-                        "h5",
-                        null,
-                        this.props.gift.gift_name,
-                        " ",
-                        _react2.default.createElement(
-                            "button",
-                            { className: "btn-close", onClick: this.toggleComments },
-                            "x"
-                        )
-                    ),
-                    this.state.comments.map(function (el) {
-                        return _react2.default.createElement(_Comments2.default, { key: el.comment_id, comment: el });
-                    }),
-                    _react2.default.createElement(
-                        "div",
-                        { className: "comment-end-btns" },
-                        _react2.default.createElement(
-                            "button",
-                            { id: this.props.gift.gift_id, className: "btn-add-comment", onClick: this.openCommentBox },
-                            "Add Comment"
-                        ),
-                        "  ",
-                        _react2.default.createElement(
-                            "button",
-                            { className: "btn-big-close", onClick: this.toggleComments },
-                            "Close"
-                        )
-                    )
-                );
-            } else if (showCommentBox && showComments) {
-                return _react2.default.createElement(
-                    "div",
-                    null,
-                    _react2.default.createElement(
-                        "h5",
-                        null,
-                        this.props.gift.gift_name,
-                        " ",
-                        _react2.default.createElement(
-                            "button",
-                            { onClick: this.toggleComments },
-                            "x"
-                        )
-                    ),
-                    this.state.comments.map(function (el) {
-                        return _react2.default.createElement(_Comments2.default, { key: el.comment_id, comment: el });
-                    }),
-                    _react2.default.createElement(
-                        "form",
-                        { onSubmit: this.addComment },
-                        _react2.default.createElement(
-                            "label",
-                            { htmlFor: "name" },
-                            "Enter your name: "
-                        ),
-                        _react2.default.createElement("br", null),
-                        _react2.default.createElement("input", {
-                            type: "text",
-                            id: "newCommentName",
-                            value: this.state.newCommentName,
-                            onChange: this.handleInput,
-                            required: true
-                        }),
-                        " ",
-                        _react2.default.createElement("br", null),
-                        _react2.default.createElement(
-                            "label",
-                            { htmlFor: "new-comment" },
-                            "Leave a comment:"
-                        ),
-                        _react2.default.createElement("br", null),
-                        _react2.default.createElement("textarea", {
-                            value: this.state.newCommentText,
-                            onChange: this.handleInput,
-                            id: "newCommentText",
-                            rows: "5",
-                            cols: "33"
-                        }),
-                        " ",
-                        _react2.default.createElement("br", null),
-                        _react2.default.createElement(
-                            "button",
-                            null,
-                            "Submit"
-                        )
-                    )
-                );
-            } else {
-                return _react2.default.createElement(
-                    "li",
-                    { onClick: this.getComments, id: this.props.gift.gift_id },
-                    this.props.gift.gift_name
-                );
-            }
-        }
-    }]);
-
-    return Gift;
+  return Gift;
 }(_react2.default.Component);
 
 exports.default = Gift;
