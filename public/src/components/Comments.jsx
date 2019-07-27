@@ -28,10 +28,10 @@ class Comments extends React.Component {
           <div className="comment-box">
             <div className="comment-box-user">
               {this.props.comment.name} -{' '}
-              <Moment fromNow ago>
-                {parsedTimestamp}
-              </Moment>
-              ago
+                <Moment fromNow ago>
+                  {parsedTimestamp}
+                </Moment>
+              {' ago'}
             </div>
             <div className="comment-box-comment">
               {this.props.comment.comment}

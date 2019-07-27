@@ -47,11 +47,20 @@ nav h1 {
     
 }
 
+h3 { 
+    font-size: 64px;
+}
+
 button {
     width: 80px;
     background-color:#17BEBB;
     border-radius: 5px;
     margin-left: 10px;
+    font-size: 16px;
+}
+
+li {
+    font-size: 32px;
 }
 
 .app {
@@ -76,6 +85,7 @@ button {
     /* width: 200px; */
     height: 50px;
     border-radius: 10px;
+    margin-top: 10px;
 }
 
 .btn-close {
@@ -85,6 +95,7 @@ button {
     text-align: center;
     font-size: 8px;
     border-radius: 10px;
+    margin: 10px;
 }
 
 
@@ -104,13 +115,11 @@ ul{
     background-color: rgba(86, 86, 86, 0.95);
     align-items: center;
     padding: 10px;
-    color: 
+    font-size: 32px;
 }
 
 .content {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
     flex-direction: column;
     padding-top: 40px;
     width: 700px;
@@ -139,12 +148,7 @@ ul{
 }
 
 .comment-box-comment {
-    width: 300px;
-    padding-left: 10px;
-    margin-left: 40px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: white;
+    padding: 10px;
 }
 
 .comment-end-btns{
@@ -155,8 +159,6 @@ ul{
     font-size: 24px;
 
 }
-
-
 
 .friend {
     width: 400px;
@@ -176,7 +178,6 @@ ul{
     display: flex;
 }
 
-
 .friend-header img {
     height: 60px;
     margin: 10px;
@@ -186,6 +187,7 @@ ul{
 .friend-title {
     display: flex;
     flex-direction: column;
+    margin: 10px;
 }
 
 .friend-title h4 {

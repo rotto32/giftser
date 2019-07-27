@@ -75,7 +75,8 @@ function getComments(gift_id, cb) {
 }
 
 function postComment(gift_id, newcomment, cb) {
-  client.query(`INSERT INTO comments (name, comment, timestamp, gift_id, creator_id) VALUES ('${newcomment.name}', '${newcomment.comment}', ${newcomment.timestamp}, ${newcomment.gift_id}, 1001)`)
+    console.log(newcomment);
+  client.query(`INSERT INTO comments (name, comment, timestamp, gift_id) VALUES ('${newcomment.name}', '${newcomment.comment}', ${newcomment.timestamp}, ${newcomment.gift_id});`)
     .then((res) => { cb(res); })
     .catch(e => console.log(e));
 }
