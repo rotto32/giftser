@@ -9,10 +9,10 @@ class Gift extends React.Component {
     this.state = {
       showComments: false,
       comments: [],
-      giftIdForNewComment: "",
+      giftIdForNewComment: '',
       showCommentBox: false,
-      newCommentName: "",
-      newCommentText: ""
+      newCommentName: '',
+      newCommentText: '',
     };
 
     this.toggleComments = this.toggleComments.bind(this);
@@ -26,10 +26,10 @@ class Gift extends React.Component {
   getComments(event) {
     axios
       .get(`/api/comments/${event.target.id}`)
-      .then(data => {
+      .then((data) => {
         this.setState({
           showComments: !this.state.showComments,
-          comments: data.data
+          comments: data.data,
         });
       })
       .catch(err => console.log(err));
@@ -37,7 +37,7 @@ class Gift extends React.Component {
 
   toggleComments() {
     this.setState({
-      showComments: !this.state.showComments
+      showComments: !this.state.showComments,
     });
   }
 
@@ -57,14 +57,14 @@ class Gift extends React.Component {
   addComment(event) {
     event.preventDefault();
     this.setState({
-      showCommentBox: !this.state.showCommentBox
+      showCommentBox: !this.state.showCommentBox,
     });
     axios
       .post(`/api/comments/${this.state.giftIdForNewComment}`, {
         name: this.state.newCommentName,
         comment: this.state.newCommentText,
         timestamp: Date.now(),
-        gift_id: this.state.giftIdForNewComment
+        gift_id: this.state.giftIdForNewComment,
       })
       .then(() => {
         this.updateComments(this.state.giftIdForNewComment);
@@ -93,7 +93,7 @@ class Gift extends React.Component {
         <div className="comment-list">
           <h5>
             {this.props.gift.gift_name}
-            {" "}
+            {' '}
             <button
               type="button"
               className="btn-close"
@@ -103,9 +103,7 @@ class Gift extends React.Component {
             </button>
           </h5>
 
-          {this.state.comments.map(el => {
-            return <Comments key={el.comment_id} comment={el} />;
-          })}
+          {this.state.comments.map(el => <Comments key={el.comment_id} comment={el} />)}
           <div className="comment-end-btns">
             <button
               type="button"
@@ -114,8 +112,8 @@ class Gift extends React.Component {
               onClick={this.openCommentBox}
             >
               Add Comment
-            </button>{" "}
-            <button className="btn-big-close" onClick={this.toggleComments}>
+            </button>{' '}
+            <button type="button" className="btn-big-close" onClick={this.toggleComments}>
               Close
             </button>
           </div>
@@ -126,11 +124,11 @@ class Gift extends React.Component {
       return (
         <div>
           <h5>
-            {this.props.gift.gift_name}{" "}
-            <button onClick={this.toggleComments}>x</button>
+            {this.props.gift.gift_name}{' '}
+            <button type="button" onClick={this.toggleComments}>x</button>
           </h5>
 
-          {this.state.comments.map(el => {
+          {this.state.comments.map((el) => {
             return <Comments key={el.comment_id} comment={el} />;
           })}
           {/* <button id={this.props.gift.gift_id} className="btn-add-comment" onClick={this.openCommentBox}>Add Comment</button> */}

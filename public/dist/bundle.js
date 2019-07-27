@@ -45738,10 +45738,10 @@ var Gift = function (_React$Component) {
     _this.state = {
       showComments: false,
       comments: [],
-      giftIdForNewComment: "",
+      giftIdForNewComment: '',
       showCommentBox: false,
-      newCommentName: "",
-      newCommentText: ""
+      newCommentName: '',
+      newCommentText: ''
     };
 
     _this.toggleComments = _this.toggleComments.bind(_this);
@@ -45833,7 +45833,7 @@ var Gift = function (_React$Component) {
             'h5',
             null,
             this.props.gift.gift_name,
-            " ",
+            ' ',
             _react2.default.createElement(
               'button',
               {
@@ -45860,10 +45860,10 @@ var Gift = function (_React$Component) {
               },
               'Add Comment'
             ),
-            " ",
+            ' ',
             _react2.default.createElement(
               'button',
-              { className: 'btn-big-close', onClick: this.toggleComments },
+              { type: 'button', className: 'btn-big-close', onClick: this.toggleComments },
               'Close'
             )
           )
@@ -45877,10 +45877,10 @@ var Gift = function (_React$Component) {
             'h5',
             null,
             this.props.gift.gift_name,
-            " ",
+            ' ',
             _react2.default.createElement(
               'button',
-              { onClick: this.toggleComments },
+              { type: 'button', onClick: this.toggleComments },
               'x'
             )
           ),
