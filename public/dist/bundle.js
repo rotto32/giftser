@@ -113,7 +113,6 @@ var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ "./node_modules/
 var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ "./node_modules/axios/lib/helpers/parseHeaders.js");
 var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ "./node_modules/axios/lib/helpers/isURLSameOrigin.js");
 var createError = __webpack_require__(/*! ../core/createError */ "./node_modules/axios/lib/core/createError.js");
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(/*! ./../helpers/btoa */ "./node_modules/axios/lib/helpers/btoa.js");
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -125,22 +124,6 @@ module.exports = function xhrAdapter(config) {
     }
 
     var request = new XMLHttpRequest();
-    var loadEvent = 'onreadystatechange';
-    var xDomain = false;
-
-    // For IE 8/9 CORS support
-    // Only supports POST and GET calls and doesn't returns the response headers.
-    // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
-    if ( true &&
-        typeof window !== 'undefined' &&
-        window.XDomainRequest && !('withCredentials' in request) &&
-        !isURLSameOrigin(config.url)) {
-      request = new window.XDomainRequest();
-      loadEvent = 'onload';
-      xDomain = true;
-      request.onprogress = function handleProgress() {};
-      request.ontimeout = function handleTimeout() {};
-    }
 
     // HTTP basic authentication
     if (config.auth) {
@@ -155,8 +138,8 @@ module.exports = function xhrAdapter(config) {
     request.timeout = config.timeout;
 
     // Listen for ready state
-    request[loadEvent] = function handleLoad() {
-      if (!request || (request.readyState !== 4 && !xDomain)) {
+    request.onreadystatechange = function handleLoad() {
+      if (!request || request.readyState !== 4) {
         return;
       }
 
@@ -173,9 +156,8 @@ module.exports = function xhrAdapter(config) {
       var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
       var response = {
         data: responseData,
-        // IE sends 1223 instead of 204 (https://github.com/axios/axios/issues/201)
-        status: request.status === 1223 ? 204 : request.status,
-        statusText: request.status === 1223 ? 'No Content' : request.statusText,
+        status: request.status,
+        statusText: request.statusText,
         headers: responseHeaders,
         config: config,
         request: request
@@ -988,54 +970,6 @@ module.exports = function bind(fn, thisArg) {
 
 /***/ }),
 
-/***/ "./node_modules/axios/lib/helpers/btoa.js":
-/*!************************************************!*\
-  !*** ./node_modules/axios/lib/helpers/btoa.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// btoa polyfill for IE<10 courtesy https://github.com/davidchambers/Base64.js
-
-var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-
-function E() {
-  this.message = 'String contains an invalid character';
-}
-E.prototype = new Error;
-E.prototype.code = 5;
-E.prototype.name = 'InvalidCharacterError';
-
-function btoa(input) {
-  var str = String(input);
-  var output = '';
-  for (
-    // initialize result and counter
-    var block, charCode, idx = 0, map = chars;
-    // if the next str index does not exist:
-    //   change the mapping table to "="
-    //   check if d has no fractional digits
-    str.charAt(idx | 0) || (map = '=', idx % 1);
-    // "8 - idx % 1 * 8" generates the sequence 2, 4, 6, 8
-    output += map.charAt(63 & block >> 8 - idx % 1 * 8)
-  ) {
-    charCode = str.charCodeAt(idx += 3 / 4);
-    if (charCode > 0xFF) {
-      throw new E();
-    }
-    block = block << 8 | charCode;
-  }
-  return output;
-}
-
-module.exports = btoa;
-
-
-/***/ }),
-
 /***/ "./node_modules/axios/lib/helpers/buildURL.js":
 /*!****************************************************!*\
   !*** ./node_modules/axios/lib/helpers/buildURL.js ***!
@@ -1767,7 +1701,7 @@ var urlEscape = __webpack_require__(/*! ../../node_modules/css-loader/dist/runti
 var ___CSS_LOADER_URL___0___ = urlEscape(__webpack_require__(/*! ./imgs/art-blur-bright.jpg */ "./public/dist/imgs/art-blur-bright.jpg"));
 
 // Module
-exports.push([module.i, "/*\nPalette\n#F7E1D7 CREAM\n#FF87AB PINK rgba(255, 135, 171, 1)\n#565656 GREY rgba(86, 86, 86, 1)\n#AEA4BF LAVENDAR rgba(174, 164, 191, 1)\n#17BEBB TEAL\n\nFONTS\nfont-family: 'Abril Fatface', cursive;\nfont-family: 'Poppins', sans-serif;\n\n\n*/\n\n* {\n    margin: 0;\n    /* background-color: #F7E1D7; */\n    color: #565656;\n    font-family: 'Poppins', sans-serif;\n    font-size: 16px;\n}\n\nnav {\n    display: flex;\n    height: 400px;\n    /* background-size: cover; */\n    justify-content: center;\n    flex-direction: column;\n    align-items: center;\n    background-color: rgba(86, 86, 86, 0.5);\n    color: #565656;\n    border-bottom: 3px #17BEBB solid;\n    background-image: url(" + ___CSS_LOADER_URL___0___ + ");\n    background-position: center;\n    background-size: cover;\n\n}\n\nnav h1 {\n    margin-left: 10px;\n    color: #17BEBB;\n    /* background-color: #AEA4BF; */\n    font-family: 'Abril Fatface', cursive;\n    font-size: 86px;\n    text-shadow: 1px 2px #565656;\n    \n}\n\nh3 { \n    font-size: 64px;\n}\n\nbutton {\n    width: 80px;\n    background-color:#17BEBB;\n    border-radius: 5px;\n    margin-left: 10px;\n    font-size: 16px;\n}\n\nli {\n    font-size: 32px;\n}\n\n.app {\n    display: flex;\n}\n\n.btn-add-comment {\n    width: 100px;\n}\n\n.btn-add-gift {\n    width: 200px;\n    margin-top: 10px;\n    margin-left: 30px;\n}\n\n.btn-big-close {\n    height: 55px;\n}\n\n.btn-show-gifts {\n    /* width: 200px; */\n    height: 50px;\n    border-radius: 10px;\n    margin-top: 10px;\n}\n\n.btn-close {\n    width: 10px;\n    height: 20px;\n    padding: 0 12px 0 10px;\n    text-align: center;\n    font-size: 8px;\n    border-radius: 10px;\n    margin: 10px;\n}\n\n\nbutton:hover {\n    background-color:#FF87AB;\n}\n\nul{\n    list-style: none;\n}\n\n\n.current-user {\n    display: flex;\n    color: rgba(255, 135, 171, 1);\n    justify-content: space-around;\n    background-color: rgba(86, 86, 86, 0.95);\n    align-items: center;\n    padding: 10px;\n    font-size: 32px;\n}\n\n.content {\n    display: flex;\n    flex-direction: column;\n    padding-top: 40px;\n    width: 700px;\n    padding-left: 100px;\n}\n\n.content h3 {\n    font-size: 32px;\n    border-bottom: 3px #17BEBB solid;\n    margin-bottom: 20px;\n    padding-bottom: 0px;\n}\n\n.comment-box {\n    border: #17BEBB 2px solid;\n    margin: 2px;\n    margin-top: 0px;\n    margin-right: 18px;\n    padding: 2px 0;\n    padding-top: 0;\n    width: 400px;\n}\n\n.comment-box-user {\n    background-color: #FF87AB;\n}\n\n.comment-box-comment {\n    padding: 10px;\n}\n\n.comment-end-btns{\n    display: flex;\n}\n\n.comment-list h5{\n    font-size: 24px;\n\n}\n\n.friend {\n    width: 400px;\n    height: 100px;\n    display: flex;\n    /* background-color: #AEA4BF; */\n    justify-content: space-between;\n    align-content: center;\n    border: 2px #565656 solid;\n    border-radius: 3px;\n    padding-right: 30px;\n    padding-left: 30px;\n    margin-bottom: 20px;\n}\n\n.friend-header{\n    display: flex;\n}\n\n.friend-header img {\n    height: 60px;\n    margin: 10px;\n    border-radius:30px;\n}\n\n.friend-title {\n    display: flex;\n    flex-direction: column;\n    margin: 10px;\n}\n\n.friend-title h4 {\n    font-size: 24px;\n}\n\n\n.friend-title p {\n    font-size: 6px;\n}\n\n\n.friend p {\n    font-size: 16px;\n    /* background-color: #AEA4BF; */\n}\n\n.friend h4 {\n    /* background-color: #AEA4BF; */\n}\n\n.gift-list {\n    padding-bottom: 10px;\n    background-color:#F7E1D7;\n    border: 2px #17BEBB solid;\n    margin: 20px;\n}\n\n.gift-list-title {\n    display: flex;\n    flex-direction: row;\n    \n}\n\n.gift-list-title h5{\n    font-size: 24px;\n    margin: 10px;\n    padding-left:10px;\n}\n\n\nfooter {\n    background-color: #17BEBB;\n    height: 50px;\n}", ""]);
+exports.push([module.i, "/*\nPalette\n#F7E1D7 CREAM\n#FF87AB PINK rgba(255, 135, 171, 1)\n#565656 GREY rgba(86, 86, 86, 1)\n#AEA4BF LAVENDAR rgba(174, 164, 191, 1)\n#17BEBB TEAL\n\nFONTS\nfont-family: 'Abril Fatface', cursive;\nfont-family: 'Poppins', sans-serif;\n\n\n*/\n\n* {\n    margin: 0;\n    /* background-color: #F7E1D7; */\n    color: #565656;\n    font-family: 'Poppins', sans-serif;\n    font-size: 16px;\n}\n\nnav {\n    display: flex;\n    height: 400px;\n    /* background-size: cover; */\n    justify-content: center;\n    flex-direction: column;\n    align-items: center;\n    background-color: rgba(86, 86, 86, 0.5);\n    color: #565656;\n    border-bottom: 3px #17BEBB solid;\n    background-image: url(" + ___CSS_LOADER_URL___0___ + ");\n    background-position: center;\n    background-size: cover;\n\n}\n\nnav h1 {\n    margin-left: 10px;\n    color: #17BEBB;\n    /* background-color: #AEA4BF; */\n    font-family: 'Abril Fatface', cursive;\n    font-size: 86px;\n    text-shadow: 1px 2px #565656;\n    \n}\n\nh3 { \n    font-size: 64px;\n}\n\nbutton {\n    width: 80px;\n    background-color:#17BEBB;\n    border-radius: 5px;\n    margin-left: 10px;\n    font-size: 16px;\n}\n\nli {\n    font-size: 32px;\n}\n\n.app {\n    display: flex;\n}\n\n.btn-add-comment {\n    width: 100px;\n}\n\n.btn-add-gift {\n    width: 200px;\n    margin-top: 10px;\n    margin-left: 30px;\n}\n\n.btn-big-close {\n    height: 55px;\n}\n\n.btn-show-gifts {\n    /* width: 200px; */\n    height: 50px;\n    border-radius: 10px;\n    margin-top: 10px;\n}\n\n.btn-close {\n    width: 10px;\n    height: 20px;\n    padding: 0 12px 0 10px;\n    text-align: center;\n    font-size: 8px;\n    border-radius: 10px;\n    margin: 10px;\n}\n\n\nbutton:hover {\n    background-color:#FF87AB;\n}\n\nul{\n    list-style: none;\n}\n\n.cat-title {\n    font-size: 32px;\n    color: #17BEBB;\n    margin-left: 10px;\n}\n\n.current-user {\n    display: flex;\n    color: rgba(255, 135, 171, 1);\n    justify-content: space-around;\n    background-color: rgba(86, 86, 86, 0.95);\n    align-items: center;\n    padding: 10px;\n    font-size: 32px;\n}\n\n.content {\n    display: flex;\n    flex-direction: column;\n    padding-top: 40px;\n    width: 700px;\n    padding-left: 100px;\n}\n\n.content h3 {\n    font-size: 32px;\n    border-bottom: 3px #17BEBB solid;\n    margin-bottom: 20px;\n    padding-bottom: 0px;\n}\n\n.comment-box {\n    border: #17BEBB 2px solid;\n    margin: 2px;\n    margin-top: 0px;\n    margin-right: 18px;\n    padding: 2px 0;\n    padding-top: 0;\n    width: 400px;\n}\n\n.comment-box-user {\n    background-color: #FF87AB;\n}\n\n.comment-box-comment {\n    padding: 10px;\n}\n\n.comment-end-btns{\n    display: flex;\n}\n\n.comment-list h5{\n    font-size: 24px;\n\n}\n\n.friend {\n    width: 400px;\n    height: 100px;\n    display: flex;\n    /* background-color: #AEA4BF; */\n    justify-content: space-between;\n    align-content: center;\n    border: 2px #565656 solid;\n    border-radius: 3px;\n    padding-right: 30px;\n    padding-left: 30px;\n    margin-bottom: 20px;\n}\n\n.friend-header{\n    display: flex;\n}\n\n.friend-header img {\n    height: 60px;\n    margin: 10px;\n    border-radius:30px;\n}\n\n.friend-title {\n    display: flex;\n    flex-direction: column;\n    margin: 10px;\n}\n\n.friend-title h4 {\n    font-size: 24px;\n}\n\n\n.friend-title p {\n    font-size: 6px;\n}\n\n\n.friend p {\n    font-size: 16px;\n    /* background-color: #AEA4BF; */\n}\n\n.friend h4 {\n    /* background-color: #AEA4BF; */\n}\n\n.gift-list {\n    padding-bottom: 10px;\n    background-color:#F7E1D7;\n    border: 2px #17BEBB solid;\n    margin: 20px;\n}\n\n.gift-list-title {\n    display: flex;\n    flex-direction: row;\n    \n}\n\n.gift-list-title h5{\n    font-size: 24px;\n    margin: 10px;\n    padding-left:10px;\n}\n\n\nfooter {\n    background-color: #17BEBB;\n    height: 50px;\n}", ""]);
 
 
 
@@ -45455,7 +45389,7 @@ var Friend = function (_React$Component) {
             null,
             _react2.default.createElement(
               'h6',
-              null,
+              { className: 'cat-title' },
               transformedCat
             ),
             _react2.default.createElement(

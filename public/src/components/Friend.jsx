@@ -116,8 +116,8 @@ class Friend extends React.Component {
   // }
 
   render() {
-    let friendState = this.state.gifts;
-    let showGiftBox = this.state.showGiftBox;
+    const friendState = this.state.gifts;
+    const showGiftBox = this.state.showGiftBox;
 
     const aggrGiftCategories = (giftArr) => {
       let catObj = {};
@@ -133,10 +133,10 @@ class Friend extends React.Component {
     };
 
     const transformCategories = (str) => {
-      let strArr = str.split('');
+      const strArr = str.split('');
       strArr[0] = strArr[0].toUpperCase();
       if (strArr.includes(' ')) {
-        let iofSpace = strArr.indexOf(' ');
+        const iofSpace = strArr.indexOf(' ');
         strArr[iofSpace + 1] = strArr[iofSpace + 1].toUpperCase();
       }
       return strArr.join('');
@@ -144,10 +144,10 @@ class Friend extends React.Component {
 
     const renderGiftsByCat = (objKeys, objCat) => {
       return objKeys.map((cat) => {
-        let transformedCat = transformCategories(cat);
+        const transformedCat = transformCategories(cat);
         return (
           <div>
-            <h6>{transformedCat}</h6>
+            <h6 className="cat-title">{transformedCat}</h6>
             <ul>
               {objCat[cat].map((gift) => {
                 return <Gift key={gift.gift_id} gift={gift} />;
@@ -205,19 +205,7 @@ class Friend extends React.Component {
           </div>
 
           <div>
-            {/* <Gift key={gift.gift_id} gift={gift} /> */}
-            {/* {catByFriend.map((cat) => {
-              let transformedCat = transformCategories(cat);
-              return (
-                <div>
-                  <h6> 
-                    {transformedCat} 
-                  </h6>
-                </div>)
-            })} */}
             {renderGiftsByCat(giftCategories, giftsByCategory)}
-
-            {/* {console.log(catByFriend)} */}
           </div>
 
           <button

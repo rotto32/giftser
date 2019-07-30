@@ -107,6 +107,11 @@ ul{
     list-style: none;
 }
 
+.cat-title {
+    font-size: 32px;
+    color: #17BEBB;
+    margin-left: 10px;
+}
 
 .current-user {
     display: flex;
