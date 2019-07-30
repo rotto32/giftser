@@ -89,7 +89,6 @@ class Gift extends React.Component {
   render() {
     const showComments = this.state.showComments;
     const showCommentBox = this.state.showCommentBox;
-    let xmasTitle = '<h6>Christmas</h6>';
     if (showComments && !showCommentBox) {
       return (
         <div className="comment-list">

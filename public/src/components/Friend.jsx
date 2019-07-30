@@ -14,8 +14,6 @@ class Friend extends React.Component {
       uIdForNewGift: '',
       newGiftName: '',
       newGiftType: '',
-
-
     };
     this.handleClick = this.handleClick.bind(this);
     this.hideGifts = this.hideGifts.bind(this);
@@ -105,9 +103,64 @@ class Friend extends React.Component {
       .catch((err) => { console.log(err); });
   }
 
+  // aggregateGiftCategories() {
+  //   let categoryArray = [];
+  //   this.props.gifts.map((gift) => {
+  //     if (!categoryArray.includes(gift.type)) {
+  //       categoryArray.push(gift.type);
+  //     }
+  //   });
+  //   this.setState({
+  //     allGiftCategories: categoryArray,
+  //   });
+  // }
+
   render() {
     let friendState = this.state.gifts;
     let showGiftBox = this.state.showGiftBox;
+
+    const aggrGiftCategories = (giftArr) => {
+      let catObj = {};
+      giftArr.map((el) => {
+        if (catObj[el.type]) {
+          catObj[el.type].push(el);
+        } else {
+          catObj[el.type] = [];
+          catObj[el.type].push(el);
+        }
+      });
+      return catObj;
+    };
+
+    const transformCategories = (str) => {
+      let strArr = str.split('');
+      strArr[0] = strArr[0].toUpperCase();
+      if (strArr.includes(' ')) {
+        let iofSpace = strArr.indexOf(' ');
+        strArr[iofSpace + 1] = strArr[iofSpace + 1].toUpperCase();
+      }
+      return strArr.join('');
+    };
+
+    const renderGiftsByCat = (objKeys, objCat) => {
+      return objKeys.map((cat) => {
+        let transformedCat = transformCategories(cat);
+        return (
+          <div>
+            <h6>{transformedCat}</h6>
+            <ul>
+              {objCat[cat].map((gift) => {
+                return <Gift key={gift.gift_id} gift={gift} />;
+              })}
+            </ul>
+          </div>
+        );
+      });
+    };
+
+    const giftsByCategory = aggrGiftCategories(friendState);
+
+    const giftCategories = Object.keys(giftsByCategory);
 
     if (friendState.length === 0) {
       return (
@@ -128,7 +181,7 @@ class Friend extends React.Component {
           <button
             type="button"
             className="btn-show-gifts"
-            id={ this.props.friend.user_id }
+            id={this.props.friend.user_id}
             onClick={this.getData}
           >
             Show Gifts
@@ -152,38 +205,19 @@ class Friend extends React.Component {
           </div>
 
           <div>
-            <h6>Anniversary</h6>
-            <ul>
-              {this.state.gifts.map(gift => {
-                if (gift.type === "anniversary") {
-                  return <Gift key={gift.gift_id} gift={gift} />;
-                }
-              })}
-            </ul>
-            <h6>Birthday</h6>
-            <ul>
-              {this.state.gifts.map(gift => {
-                if (gift.type === "birthday") {
-                  return <Gift key={gift.gift_id} gift={gift} />;
-                }
-              })}
-            </ul>
-            <h6>Christmas</h6>
-            <ul>
-              {this.state.gifts.map(gift => {
-                if (gift.type === "christmas") {
-                  return <Gift key={gift.gift_id} gift={gift} />;
-                }
-              })}
-            </ul>
-            <h6>Valentines</h6>
-            <ul>
-              {this.state.gifts.map(gift => {
-                if (gift.type === "valentines") {
-                  return <Gift key={gift.gift_id} gift={gift} />;
-                }
-              })}
-            </ul>
+            {/* <Gift key={gift.gift_id} gift={gift} /> */}
+            {/* {catByFriend.map((cat) => {
+              let transformedCat = transformCategories(cat);
+              return (
+                <div>
+                  <h6> 
+                    {transformedCat} 
+                  </h6>
+                </div>)
+            })} */}
+            {renderGiftsByCat(giftCategories, giftsByCategory)}
+
+            {/* {console.log(catByFriend)} */}
           </div>
 
           <button

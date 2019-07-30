@@ -45309,7 +45309,6 @@ var Friend = function (_React$Component) {
       uIdForNewGift: '',
       newGiftName: '',
       newGiftType: ''
-
     };
     _this.handleClick = _this.handleClick.bind(_this);
     _this.hideGifts = _this.hideGifts.bind(_this);
@@ -45406,11 +45405,73 @@ var Friend = function (_React$Component) {
         console.log(err);
       });
     }
+
+    // aggregateGiftCategories() {
+    //   let categoryArray = [];
+    //   this.props.gifts.map((gift) => {
+    //     if (!categoryArray.includes(gift.type)) {
+    //       categoryArray.push(gift.type);
+    //     }
+    //   });
+    //   this.setState({
+    //     allGiftCategories: categoryArray,
+    //   });
+    // }
+
   }, {
     key: 'render',
     value: function render() {
       var friendState = this.state.gifts;
       var showGiftBox = this.state.showGiftBox;
+
+      var aggrGiftCategories = function aggrGiftCategories(giftArr) {
+        var catObj = {};
+        giftArr.map(function (el) {
+          if (catObj[el.type]) {
+            catObj[el.type].push(el);
+          } else {
+            catObj[el.type] = [];
+            catObj[el.type].push(el);
+          }
+        });
+        return catObj;
+      };
+
+      var transformCategories = function transformCategories(str) {
+        var strArr = str.split('');
+        strArr[0] = strArr[0].toUpperCase();
+        if (strArr.includes(' ')) {
+          var iofSpace = strArr.indexOf(' ');
+          strArr[iofSpace + 1] = strArr[iofSpace + 1].toUpperCase();
+        }
+        return strArr.join('');
+      };
+
+      var renderGiftsByCat = function renderGiftsByCat(objKeys, objCat) {
+        return objKeys.map(function (cat) {
+          var transformedCat = transformCategories(cat);
+          return _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'h6',
+              null,
+              transformedCat
+            ),
+            _react2.default.createElement(
+              'ul',
+              null,
+              objCat[cat].map(function (gift) {
+                return _react2.default.createElement(_Gift2.default, { key: gift.gift_id, gift: gift });
+              })
+            )
+          );
+        });
+      };
+
+      var giftsByCategory = aggrGiftCategories(friendState);
+
+      var giftCategories = Object.keys(giftsByCategory);
 
       if (friendState.length === 0) {
         return _react2.default.createElement(
@@ -45479,62 +45540,7 @@ var Friend = function (_React$Component) {
           _react2.default.createElement(
             'div',
             null,
-            _react2.default.createElement(
-              'h6',
-              null,
-              'Anniversary'
-            ),
-            _react2.default.createElement(
-              'ul',
-              null,
-              this.state.gifts.map(function (gift) {
-                if (gift.type === "anniversary") {
-                  return _react2.default.createElement(_Gift2.default, { key: gift.gift_id, gift: gift });
-                }
-              })
-            ),
-            _react2.default.createElement(
-              'h6',
-              null,
-              'Birthday'
-            ),
-            _react2.default.createElement(
-              'ul',
-              null,
-              this.state.gifts.map(function (gift) {
-                if (gift.type === "birthday") {
-                  return _react2.default.createElement(_Gift2.default, { key: gift.gift_id, gift: gift });
-                }
-              })
-            ),
-            _react2.default.createElement(
-              'h6',
-              null,
-              'Christmas'
-            ),
-            _react2.default.createElement(
-              'ul',
-              null,
-              this.state.gifts.map(function (gift) {
-                if (gift.type === "christmas") {
-                  return _react2.default.createElement(_Gift2.default, { key: gift.gift_id, gift: gift });
-                }
-              })
-            ),
-            _react2.default.createElement(
-              'h6',
-              null,
-              'Valentines'
-            ),
-            _react2.default.createElement(
-              'ul',
-              null,
-              this.state.gifts.map(function (gift) {
-                if (gift.type === "valentines") {
-                  return _react2.default.createElement(_Gift2.default, { key: gift.gift_id, gift: gift });
-                }
-              })
-            )
+            renderGiftsByCat(giftCategories, giftsByCategory)
           ),
           _react2.default.createElement(
             'button',
@@ -45898,7 +45904,6 @@ var Gift = function (_React$Component) {
     value: function render() {
       var showComments = this.state.showComments;
       var showCommentBox = this.state.showCommentBox;
-      var xmasTitle = '<h6>Christmas</h6>';
       if (showComments && !showCommentBox) {
         return _react2.default.createElement(
           'div',
