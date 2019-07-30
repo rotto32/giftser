@@ -45157,6 +45157,7 @@ var Comments = function (_React$Component) {
     value: function render() {
       var parsedTimestamp = new Date(this.props.comment.timestamp * 1000);
       parsedTimestamp = parsedTimestamp.toLocaleString();
+      console.log(parsedTimestamp);
       return _react2.default.createElement(
         'div',
         { className: 'comment-box' },
@@ -45812,7 +45813,7 @@ var Gift = function (_React$Component) {
       _axios2.default.post('/api/comments/' + this.state.giftIdForNewComment, {
         name: this.state.newCommentName,
         comment: this.state.newCommentText,
-        timestamp: Date.now(),
+        timestamp: Date.now() / 1000,
         gift_id: this.state.giftIdForNewComment
       }).then(function () {
         _this3.updateComments(_this3.state.giftIdForNewComment);

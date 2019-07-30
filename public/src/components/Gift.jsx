@@ -64,7 +64,7 @@ class Gift extends React.Component {
       .post(`/api/comments/${this.state.giftIdForNewComment}`, {
         name: this.state.newCommentName,
         comment: this.state.newCommentText,
-        timestamp: Date.now(),
+        timestamp: Date.now() / 1000,
         gift_id: this.state.giftIdForNewComment,
       })
       .then(() => {
